@@ -10,6 +10,10 @@ import {
   PopoverButton,
   PopoverBackdrop,
   PopoverPanel,
+  Menu,
+  MenuButton,
+  MenuItems,
+  MenuItem,
 } from '@headlessui/react'
 import clsx from 'clsx'
 
@@ -123,7 +127,23 @@ function MobileNavigation(
           <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
             <MobileNavItem href="/">Home</MobileNavItem>
             <MobileNavItem href="/experience">Experience</MobileNavItem>
-            <MobileNavItem href="/projects">Projects</MobileNavItem>
+            <li>
+              <PopoverButton as={Link} href="/projects" className="block py-2">
+                Projects
+              </PopoverButton>
+              <ul className="ml-4 border-l border-zinc-200 pl-4 dark:border-zinc-700">
+                <li>
+                  <PopoverButton as={Link} href="/projects/buckets" className="block py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    Buckets
+                  </PopoverButton>
+                </li>
+                <li>
+                  <PopoverButton as={Link} href="/projects/automation-comparison" className="block py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    Automation Comparison Tool
+                  </PopoverButton>
+                </li>
+              </ul>
+            </li>
             <MobileNavItem href="/articles">Articles</MobileNavItem>
           </ul>
         </nav>
@@ -161,13 +181,60 @@ function NavItem({
   )
 }
 
+const projectsSubpages = [
+  { href: '/projects', label: 'All Projects' },
+  { href: '/projects/buckets', label: 'Buckets' },
+  { href: '/projects/automation-comparison', label: 'Automation Comparison Tool' },
+]
+
+function ProjectsDropdown() {
+  const pathname = usePathname()
+  const isActive = pathname?.startsWith('/projects')
+
+  return (
+    <li>
+      <Menu as="div" className="relative">
+        <MenuButton
+          className={clsx(
+            'relative flex items-center gap-1 px-3 py-2 transition',
+            isActive
+              ? 'text-indigo-500 dark:text-indigo-400'
+              : 'hover:text-indigo-500 dark:hover:text-indigo-400',
+          )}
+        >
+          Projects
+          <ChevronDownIcon className="h-auto w-2 stroke-current" />
+          {isActive && (
+            <span className="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-indigo-500/0 via-indigo-500/40 to-indigo-500/0 dark:from-indigo-400/0 dark:via-indigo-400/40 dark:to-indigo-400/0" />
+          )}
+        </MenuButton>
+        <MenuItems
+          transition
+          className="absolute left-0 top-full z-50 mt-2 w-56 origin-top-left rounded-xl bg-white p-2 shadow-lg ring-1 ring-zinc-900/5 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0 dark:bg-zinc-800 dark:ring-white/10"
+        >
+          {projectsSubpages.map((item) => (
+            <MenuItem key={item.href}>
+              <Link
+                href={item.href}
+                className="block rounded-lg px-3 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 data-focus:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:data-focus:bg-zinc-700"
+              >
+                {item.label}
+              </Link>
+            </MenuItem>
+          ))}
+        </MenuItems>
+      </Menu>
+    </li>
+  )
+}
+
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         <NavItem href="/">Home</NavItem>
         <NavItem href="/experience">Experience</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
+        <ProjectsDropdown />
         <NavItem href="/articles">Articles</NavItem>
       </ul>
     </nav>
