@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buckets</title>
+
+  <!-- Google Fonts: Inter & Tiny5 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Tiny5&display=swap" rel="stylesheet">
+
+  <!-- Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'MS Sans Serif', 'Tahoma', 'sans-serif'],
+            brand: ['Tiny5', 'monospace'],
+          },
+          colors: {
+            win: {
+              bg: '#c0c0c0',
+              dark: '#808080',
+              light: '#ffffff',
+              navy: '#000080',
+              teal: '#008080',
+              silver: '#c0c0c0',
+              btnface: '#dfdfdf',
+            }
+          }
+        },
+      },
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Windows 95 beveled borders */
+    .win-raised {
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      background: #c0c0c0;
+    }
+
+    .win-inset {
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      background: #c0c0c0;
+    }
+
+    .win-field {
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      background: #ffffff;
+    }
+
+    .win-btn {
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      background: #c0c0c0;
+      padding: 4px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: 'Roboto', 'MS Sans Serif', sans-serif;
+    }
+
+    .win-btn:active {
+      border-color: #808080 #ffffff #ffffff #808080;
+    }
+
+    .win-btn-primary {
+      background: #000080;
+      color: white;
+    }
+
+    .win-title-bar {
+      background: #000080;
+      color: white;
+      padding: 3px 4px;
+      font-weight: bold;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .win-window {
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      background: #c0c0c0;
+    }
+
+    /* Dotted focus outline */
+    .win-btn:focus {
+      outline: 1px dotted #000;
+      outline-offset: -4px;
+    }
+
+    select.win-select {
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      background: #ffffff;
+      padding: 2px 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    input.win-input {
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      background: #ffffff;
+      padding: 4px 6px;
+      font-size: 12px;
+    }
+
+    textarea.win-input {
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      background: #ffffff;
+      padding: 4px 6px;
+      font-size: 12px;
+      resize: none;
+    }
+  </style>
+</head>
+<body class="h-screen font-sans text-black overflow-hidden" style="background: #008080;">
+  <div id="app" class="h-full flex flex-col">
+    <!-- Main Window - Full screen, flush to edges -->
+    <div class="win-window flex-1 flex flex-col border-0" style="border-width: 0;">
+      <!-- Title Bar -->
+      <div class="win-title-bar px-1">
+        <span class="material-symbols-outlined" style="font-size: 16px;">cleaning_bucket</span>
+        <span class="font-brand text-base tracking-wide">Buckets</span>
+        <div class="ml-auto flex gap-px">
+          <button class="win-btn px-1.5 py-0 text-black text-xs leading-none">_</button>
+          <button class="win-btn px-1.5 py-0 text-black text-xs leading-none">▢</button>
+          <button class="win-btn px-1.5 py-0 text-black text-xs leading-none">X</button>
+        </div>
+      </div>
+
+      <!-- Menu Bar -->
+      <div class="win-raised flex items-center gap-1 px-2 py-0.5 text-xs" style="border-top: none;">
+        <span class="px-2 py-0.5 hover:bg-win-navy hover:text-white cursor-pointer"><u>F</u>ile</span>
+        <span class="px-2 py-0.5 hover:bg-win-navy hover:text-white cursor-pointer"><u>E</u>dit</span>
+        <span class="px-2 py-0.5 hover:bg-win-navy hover:text-white cursor-pointer"><u>V</u>iew</span>
+        <span class="px-2 py-0.5 hover:bg-win-navy hover:text-white cursor-pointer"><u>H</u>elp</span>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="win-raised flex items-center gap-2 px-2 py-1.5" style="border-top: none;">
+        <button onclick="openAddModal()" class="win-btn flex items-center gap-1">
+          <span class="material-symbols-outlined" style="font-size: 14px;">add</span>
+          New
+        </button>
+        <div class="w-px h-5 bg-win-dark"></div>
+        <div class="win-field flex items-center px-2">
+          <span class="material-symbols-outlined text-gray-500" style="font-size: 14px;">search</span>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search..."
+            class="bg-transparent text-xs w-32 focus:outline-none px-1"
+            oninput="handleSearch(this.value)"
+          >
+        </div>
+        <!-- Spacer to push right items -->
+        <div class="flex-1"></div>
+        <div class="flex items-center gap-1 win-inset p-0.5">
+          <button onclick="setView('matrix')" id="view-matrix" class="win-btn px-1.5 py-0.5" title="Matrix">
+            <span class="material-symbols-outlined" style="font-size: 14px;">grid_view</span>
+          </button>
+          <button onclick="setView('list')" id="view-list" class="win-btn px-1.5 py-0.5" title="List">
+            <span class="material-symbols-outlined" style="font-size: 14px;">view_list</span>
+          </button>
+          <button onclick="setView('kanban')" id="view-kanban" class="win-btn px-1.5 py-0.5" title="Board">
+            <span class="material-symbols-outlined" style="font-size: 14px;">view_kanban</span>
+          </button>
+          <button onclick="setView('calendar')" id="view-calendar" class="win-btn px-1.5 py-0.5" title="Calendar">
+            <span class="material-symbols-outlined" style="font-size: 14px;">calendar_month</span>
+          </button>
+        </div>
+        <div class="w-px h-5 bg-win-dark"></div>
+        <span class="text-xs">Group by:</span>
+        <select id="group-by-select" onchange="setGroupBy(this.value)" class="win-select">
+          <option value="status">Status</option>
+          <option value="priority">Priority</option>
+          <option value="complexity">Complexity</option>
+        </select>
+      </div>
+
+      <!-- Main Content Area -->
+      <div id="main-content" class="win-inset mx-1 mb-1 p-2 flex-1 bg-white overflow-hidden" style="min-height: 0;">
+        <!-- Content rendered based on view -->
+      </div>
+
+      <!-- Status Bar -->
+      <div class="win-inset flex items-center text-xs px-2 py-1 mx-1 mb-1">
+        <span id="status-text">Ready</span>
+        <span class="ml-auto" id="item-count">0 items</span>
+      </div>
+    </div>
+
+    <!-- Detail/Edit Modal (Windows 95 Dialog) -->
+    <div id="detail-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
+      <div class="win-window w-full max-w-lg">
+        <div class="win-title-bar">
+          <span class="material-symbols-outlined" style="font-size: 14px;">description</span>
+          <span>Item Details</span>
+          <button onclick="closeDetailModal()" class="win-btn px-1.5 py-0 text-black text-xs ml-auto">X</button>
+        </div>
+
+        <form onsubmit="handleUpdateIdea(event)" class="p-4">
+          <input type="hidden" id="detail-id">
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Title:</label>
+              <input type="text" id="detail-title" required class="win-input w-full">
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Description:</label>
+              <textarea id="detail-description" rows="4" class="win-input w-full"></textarea>
+            </div>
+
+            <div class="win-inset p-3">
+              <div class="text-xs font-medium mb-2">Properties</div>
+              <div class="grid grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs mb-1">Status:</label>
+                  <select id="detail-status" class="win-select w-full">
+                    <option value="backlog">Backlog</option>
+                    <option value="idea">Idea</option>
+                    <option value="planned">Planned</option>
+                    <option value="developing">Developing</option>
+                    <option value="shipped">Shipped</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs mb-1">Priority:</label>
+                  <select id="detail-priority" class="win-select w-full">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs mb-1">Complexity:</label>
+                  <select id="detail-complexity" class="win-select w-full">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="win-inset p-2 text-xs text-gray-600">
+              <span id="detail-created"></span>
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-2 mt-4 pt-3 border-t border-win-dark">
+            <button type="button" onclick="deleteIdeaFromModal()" class="win-btn text-red-700">Delete</button>
+            <div class="flex gap-2">
+              <button type="submit" class="win-btn">Save</button>
+              <button type="button" onclick="closeDetailModal()" class="win-btn">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add/Edit Modal (Windows 95 Dialog) -->
+    <div id="add-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background: rgba(0,0,0,0.3);">
+      <div class="win-window w-full max-w-md">
+        <!-- Dialog Title Bar -->
+        <div class="win-title-bar">
+          <span class="material-symbols-outlined" style="font-size: 14px;">add_circle</span>
+          <span>Add New Idea</span>
+          <button onclick="closeAddModal()" class="win-btn px-1.5 py-0 text-black text-xs ml-auto">X</button>
+        </div>
+
+        <form onsubmit="handleAddIdea(event)" class="p-4">
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-medium mb-1">Title:</label>
+              <input type="text" id="modal-title" required class="win-input w-full" placeholder="Enter idea title">
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Description:</label>
+              <textarea id="modal-description" rows="3" class="win-input w-full" placeholder="Add details..."></textarea>
+            </div>
+
+            <div class="win-inset p-3">
+              <div class="text-xs font-medium mb-2">Properties</div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs mb-1">Status:</label>
+                  <select id="modal-status" class="win-select w-full">
+                    <option value="backlog">Backlog</option>
+                    <option value="idea">Idea</option>
+                    <option value="planned">Planned</option>
+                    <option value="developing">Developing</option>
+                    <option value="shipped">Shipped</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs mb-1">Priority:</label>
+                  <select id="modal-priority" class="win-select w-full">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+                <div class="col-span-2">
+                  <label class="block text-xs mb-1">Complexity:</label>
+                  <select id="modal-complexity" class="win-select w-full">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end gap-2 mt-4 pt-3 border-t border-win-dark">
+            <button type="submit" class="win-btn">OK</button>
+            <button type="button" onclick="closeAddModal()" class="win-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =============================================================================
+    // CONSTANTS
+    // =============================================================================
+    const PRIORITY_OPTIONS = [
+      { value: 'high', label: 'High', color: 'red', icon: 'flag' },
+      { value: 'medium', label: 'Medium', color: 'yellow', icon: 'flag' },
+      { value: 'low', label: 'Low', color: 'green', icon: 'flag' },
+    ]
+
+    const COMPLEXITY_OPTIONS = [
+      { value: 'high', label: 'High', color: 'purple', icon: 'speed' },
+      { value: 'medium', label: 'Medium', color: 'blue', icon: 'speed' },
+      { value: 'low', label: 'Low', color: 'teal', icon: 'speed' },
+    ]
+
+    const STATUS_OPTIONS = [
+      { value: 'backlog', label: 'Backlog', color: 'gray', icon: 'snooze' },
+      { value: 'idea', label: 'Idea', color: 'purple', icon: 'lightbulb' },
+      { value: 'planned', label: 'Planned', color: 'orange', icon: 'event' },
+      { value: 'developing', label: 'In Progress', color: 'blue', icon: 'electric_bolt' },
+      { value: 'shipped', label: 'Done', color: 'green', icon: 'check_circle' },
+    ]
+
+    // =============================================================================
+    // STATE
+    // =============================================================================
+    let ideas = []
+    let currentView = 'matrix'
+    let groupBy = 'status'
+    let searchQuery = ''
+    let expandedId = null
+    let draggedId = null
+
+    // =============================================================================
+    // HELPERS
+    // =============================================================================
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2)
+    }
+
+    function formatDate(timestamp) {
+      if (!timestamp) return ''
+      return new Date(timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    }
+
+    function saveToStorage() {
+      localStorage.setItem('buckets-ideas', JSON.stringify(ideas))
+    }
+
+    function loadFromStorage() {
+      const stored = localStorage.getItem('buckets-ideas')
+      if (stored) {
+        ideas = JSON.parse(stored)
+      } else {
+        ideas = [
+          { id: generateId(), title: 'Dark mode support', description: 'Add a dark theme option', status: 'planned', priority: 'medium', complexity: 'medium', createdAt: Date.now() - 86400000 * 5 },
+          { id: generateId(), title: 'Fix login timeout', description: 'Users getting logged out too quickly', status: 'developing', priority: 'high', complexity: 'low', createdAt: Date.now() - 86400000 * 3 },
+          { id: generateId(), title: 'Export to PDF', description: 'Allow data export as PDF', status: 'idea', priority: 'low', complexity: 'high', createdAt: Date.now() - 86400000 * 7 },
+          { id: generateId(), title: 'Mobile navbar fix', description: 'Navbar breaks on small screens', status: 'backlog', priority: 'medium', complexity: 'low', createdAt: Date.now() - 86400000 * 2 },
+          { id: generateId(), title: 'User onboarding', description: 'Guided tour for new users', status: 'shipped', priority: 'high', complexity: 'medium', createdAt: Date.now() - 86400000 * 14, shippedAt: Date.now() - 86400000 },
+        ]
+        saveToStorage()
+      }
+    }
+
+    function getFilteredIdeas() {
+      return ideas.filter(idea => {
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase()
+          if (!idea.title?.toLowerCase().includes(query) && !idea.description?.toLowerCase().includes(query)) {
+            return false
+          }
+        }
+        return true
+      })
+    }
+
+    function getGroupingOptions() {
+      switch (groupBy) {
+        case 'priority': return PRIORITY_OPTIONS
+        case 'complexity': return COMPLEXITY_OPTIONS
+        default: return STATUS_OPTIONS
+      }
+    }
+
+    function getGroupedIdeas(groupValue) {
+      return getFilteredIdeas().filter(idea => {
+        const value = groupBy === 'status' ? (idea.status || 'backlog') : idea[groupBy]
+        return value === groupValue
+      })
+    }
+
+    function updateStatusBar() {
+      document.getElementById('item-count').textContent = `${ideas.length} items`
+      document.getElementById('status-text').textContent = currentView.charAt(0).toUpperCase() + currentView.slice(1) + ' View'
+    }
+
+    // =============================================================================
+    // RENDERING
+    // =============================================================================
+    function renderMatrixView() {
+      const highUrgent = getFilteredIdeas().filter(i => i.priority === 'high' && i.complexity === 'low')
+      const highNotUrgent = getFilteredIdeas().filter(i => i.priority === 'high' && (i.complexity === 'medium' || i.complexity === 'high'))
+      const lowUrgent = getFilteredIdeas().filter(i => (i.priority === 'medium' || i.priority === 'low') && i.complexity === 'low')
+      const lowNotUrgent = getFilteredIdeas().filter(i => (i.priority === 'medium' || i.priority === 'low') && (i.complexity === 'medium' || i.complexity === 'high'))
+
+      const renderQuadrant = (title, subtitle, icon, ideas, headerColor, quadrantId) => `
+        <div class="win-inset h-full flex flex-col overflow-hidden"
+             ondragover="event.preventDefault()"
+             ondrop="handleMatrixDrop(event, '${quadrantId}')">
+          <!-- Colored Header -->
+          <div class="flex items-center gap-2 px-3 py-2" style="background: ${headerColor};">
+            <span class="material-symbols-outlined" style="font-size: 16px;">${icon}</span>
+            <div class="flex-1 min-w-0">
+              <div class="font-bold text-sm">${title}</div>
+              <div class="text-xs opacity-75">${subtitle}</div>
+            </div>
+            <span class="win-raised px-2 py-0.5 text-xs">${ideas.length}</span>
+          </div>
+          <!-- Grey Content Area -->
+          <div class="flex-1 p-2 overflow-y-auto" style="background: #ececec;">
+            <div class="space-y-1.5">
+              ${ideas.map(idea => {
+                const status = STATUS_OPTIONS.find(s => s.value === idea.status) || STATUS_OPTIONS[0]
+                const priority = PRIORITY_OPTIONS.find(p => p.value === idea.priority) || PRIORITY_OPTIONS[1]
+                const complexity = COMPLEXITY_OPTIONS.find(c => c.value === idea.complexity) || COMPLEXITY_OPTIONS[1]
+                const statusColors = { gray: '#808080', purple: '#800080', orange: '#c06000', blue: '#000080', green: '#008000' }
+                const priorityColors = { high: '#c00000', medium: '#808000', low: '#008000' }
+                const complexityColors = { high: '#800080', medium: '#000080', low: '#008080' }
+                return `
+                  <div class="win-raised p-2 cursor-pointer text-xs hover:bg-gray-200 active:bg-gray-300 flex items-center gap-2"
+                       draggable="true"
+                       ondragstart="handleDragStart(event, '${idea.id}')"
+                       ondragend="handleDragEnd()"
+                       onclick="openDetailModal('${idea.id}')">
+                    <span class="truncate font-medium flex-1">${idea.title}</span>
+                    <div class="flex gap-1 flex-shrink-0">
+                      <span class="win-inset px-1 py-px text-white" style="font-size: 9px; background: ${statusColors[status.color]}">${status.label}</span>
+                      <span class="win-inset px-1 py-px text-white" style="font-size: 9px; background: ${priorityColors[priority.value]}">${priority.label}</span>
+                      <span class="win-inset px-1 py-px text-white" style="font-size: 9px; background: ${complexityColors[complexity.value]}">${complexity.label}</span>
+                    </div>
+                  </div>
+                `
+              }).join('') || '<div class="text-xs text-gray-500 text-center py-4 italic">Drop items here</div>'}
+            </div>
+          </div>
+        </div>
+      `
+
+      return `
+        <div class="h-full flex flex-col p-2" style="min-height: 0;">
+          <!-- Column Headers (Top) -->
+          <div class="grid grid-cols-[auto_1fr_1fr] gap-2 mb-2 flex-shrink-0">
+            <div class="w-6"></div>
+            <div class="text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Higher Importance</div>
+            <div class="text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Lower Importance</div>
+          </div>
+
+          <!-- 2x2 Grid with Row Labels -->
+          <div class="flex-1 grid grid-cols-[auto_1fr_1fr] gap-2" style="grid-template-rows: 1fr 1fr; min-height: 0;">
+            <!-- Row 1 Label -->
+            <div class="flex items-center justify-center">
+              <div class="text-xs font-bold text-gray-600 uppercase tracking-wider whitespace-nowrap" style="writing-mode: vertical-rl; transform: rotate(180deg);">Higher Urgency</div>
+            </div>
+            <!-- Row 1 Quadrants -->
+            <div class="h-full">${renderQuadrant('Do Now', 'Actively working on', 'electric_bolt', highUrgent, '#bfdbfe', 'high-low')}</div>
+            <div class="h-full">${renderQuadrant('Do Next', 'Scheduled, coming soon', 'event', highNotUrgent, '#fef3c7', 'high-high')}</div>
+
+            <!-- Row 2 Label -->
+            <div class="flex items-center justify-center">
+              <div class="text-xs font-bold text-gray-600 uppercase tracking-wider whitespace-nowrap" style="writing-mode: vertical-rl; transform: rotate(180deg);">Lower Urgency</div>
+            </div>
+            <!-- Row 2 Quadrants -->
+            <div class="h-full">${renderQuadrant('Do Later', 'Backlog, low priority', 'schedule', lowUrgent, '#d1fae5', 'low-low')}</div>
+            <div class="h-full">${renderQuadrant('Reconsider', 'Maybe, maybe not', 'help', lowNotUrgent, '#e5e5e5', 'low-high')}</div>
+          </div>
+        </div>
+      `
+    }
+
+    function renderListView() {
+      const options = getGroupingOptions()
+      const filtered = getFilteredIdeas()
+
+      if (filtered.length === 0) {
+        return `
+          <div class="flex flex-col items-center justify-center h-full text-gray-500">
+            <span class="material-symbols-outlined" style="font-size: 48px;">search_off</span>
+            <p class="mt-2 text-sm">No items found</p>
+          </div>
+        `
+      }
+
+      return options.map(group => {
+        const groupIdeas = getGroupedIdeas(group.value)
+        if (groupIdeas.length === 0 && searchQuery) return ''
+
+        return `
+          <div class="mb-4" ondragover="event.preventDefault()" ondrop="handleDrop(event, '${group.value}')">
+            <div class="win-raised p-1 flex items-center gap-2 mb-1">
+              <span class="material-symbols-outlined" style="font-size: 14px;">${group.icon}</span>
+              <span class="text-xs font-bold">${group.label}</span>
+              <span class="text-xs">(${groupIdeas.length})</span>
+              <button onclick="openAddModal({${groupBy}: '${group.value}'})" class="win-btn px-1 py-0 text-xs ml-auto">+</button>
+            </div>
+            <div class="win-inset p-1 min-h-[40px]">
+              ${groupIdeas.length > 0 ? groupIdeas.map(idea => {
+                const priority = PRIORITY_OPTIONS.find(p => p.value === idea.priority) || PRIORITY_OPTIONS[2]
+                const priorityColor = { high: '#c00000', medium: '#808000', low: '#008000' }[priority.value]
+                return `
+                  <div class="win-raised p-1.5 mb-1 flex items-center gap-2 cursor-pointer text-xs hover:bg-gray-200"
+                       draggable="true"
+                       ondragstart="handleDragStart(event, '${idea.id}')"
+                       ondragend="handleDragEnd()"
+                       onclick="openDetailModal('${idea.id}')">
+                    <span class="flex-1 truncate">${idea.title}</span>
+                    <span class="material-symbols-outlined" style="font-size: 12px; color: ${priorityColor};">flag</span>
+                  </div>
+                `
+              }).join('') : '<div class="text-xs text-gray-500 text-center py-2 italic">Drop items here</div>'}
+            </div>
+          </div>
+        `
+      }).join('')
+    }
+
+    function renderKanbanView() {
+      const options = getGroupingOptions()
+
+      return `
+        <div class="flex gap-2 h-full overflow-x-auto pb-2">
+          ${options.map(group => {
+            const groupIdeas = getGroupedIdeas(group.value)
+
+            return `
+              <div class="flex-shrink-0 w-48 flex flex-col" ondragover="event.preventDefault()" ondrop="handleDrop(event, '${group.value}')">
+                <div class="win-raised p-1 flex items-center gap-1 mb-1">
+                  <span class="material-symbols-outlined" style="font-size: 12px;">${group.icon}</span>
+                  <span class="text-[11px] font-bold truncate flex-1">${group.label}</span>
+                  <span class="win-inset px-1 text-[10px]">${groupIdeas.length}</span>
+                </div>
+                <div class="win-inset flex-1 p-1 min-h-[200px] overflow-y-auto">
+                  ${groupIdeas.map(idea => {
+                    return `
+                      <div class="win-raised p-1.5 mb-1 cursor-pointer hover:bg-gray-200"
+                           draggable="true"
+                           ondragstart="handleDragStart(event, '${idea.id}')"
+                           ondragend="handleDragEnd()"
+                           onclick="openDetailModal('${idea.id}')">
+                        <div class="flex items-center gap-1 text-[11px]">
+                          <span class="truncate">${idea.title}</span>
+                        </div>
+                      </div>
+                    `
+                  }).join('') || '<div class="text-[10px] text-gray-500 text-center py-4 italic">Drop here</div>'}
+                </div>
+              </div>
+            `
+          }).join('')}
+        </div>
+      `
+    }
+
+    function renderCalendarView() {
+      const today = new Date()
+      const year = today.getFullYear()
+      const month = today.getMonth()
+      const firstDay = new Date(year, month, 1)
+      const lastDay = new Date(year, month + 1, 0)
+      const startDayOfWeek = firstDay.getDay()
+      const daysInMonth = lastDay.getDate()
+
+      const monthName = today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+
+      let cells = []
+      for (let i = 0; i < startDayOfWeek; i++) cells.push(null)
+      for (let i = 1; i <= daysInMonth; i++) cells.push(new Date(year, month, i))
+
+      return `
+        <div class="h-full flex flex-col">
+          <div class="win-raised p-1 flex items-center justify-center mb-2">
+            <span class="text-sm font-bold">${monthName}</span>
+          </div>
+          <div class="grid grid-cols-7 gap-px win-inset p-1 flex-1">
+            ${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => `
+              <div class="win-raised p-1 text-center text-[10px] font-bold">${day}</div>
+            `).join('')}
+            ${cells.map((date) => {
+              if (!date) return '<div class="win-inset bg-gray-200"></div>'
+
+              const dateStr = date.toISOString().split('T')[0]
+              const dayIdeas = ideas.filter(idea => {
+                if (!idea.targetDate && !idea.shippedAt) return false
+                const ideaDate = new Date(idea.targetDate || idea.shippedAt).toISOString().split('T')[0]
+                return ideaDate === dateStr
+              })
+
+              const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth()
+
+              return `
+                <div class="win-inset p-0.5 min-h-[60px] ${isToday ? 'bg-yellow-100' : 'bg-white'}">
+                  <div class="text-[10px] font-bold ${isToday ? 'text-blue-800' : ''}">${date.getDate()}</div>
+                  ${dayIdeas.slice(0, 2).map(idea => {
+                    return `<div class="text-[8px] bg-blue-200 px-0.5 truncate mb-0.5">${idea.title}</div>`
+                  }).join('')}
+                  ${dayIdeas.length > 2 ? `<div class="text-[8px] text-gray-500">+${dayIdeas.length - 2}</div>` : ''}
+                </div>
+              `
+            }).join('')}
+          </div>
+        </div>
+      `
+    }
+
+    function render() {
+      updateViewButtons()
+      updateStatusBar()
+
+      let content = ''
+      switch (currentView) {
+        case 'list': content = renderListView(); break
+        case 'kanban': content = renderKanbanView(); break
+        case 'calendar': content = renderCalendarView(); break
+        default: content = renderMatrixView()
+      }
+
+      document.getElementById('main-content').innerHTML = content
+    }
+
+    function updateViewButtons() {
+      const views = ['matrix', 'list', 'kanban', 'calendar']
+      views.forEach(v => {
+        const btn = document.getElementById(`view-${v}`)
+        if (btn) {
+          if (v === currentView) {
+            btn.style.borderColor = '#808080 #ffffff #ffffff #808080'
+          } else {
+            btn.style.borderColor = '#ffffff #808080 #808080 #ffffff'
+          }
+        }
+      })
+    }
+
+    // =============================================================================
+    // EVENT HANDLERS
+    // =============================================================================
+    function setView(view) {
+      currentView = view
+      render()
+    }
+
+    function setGroupBy(value) {
+      groupBy = value
+      render()
+    }
+
+    function handleSearch(value) {
+      searchQuery = value
+      render()
+    }
+
+    function toggleExpand(id) {
+      expandedId = expandedId === id ? null : id
+      render()
+    }
+
+    function openAddModal(initialValues = {}) {
+      document.getElementById('modal-title').value = ''
+      document.getElementById('modal-description').value = ''
+      document.getElementById('modal-status').value = initialValues.status || 'backlog'
+      document.getElementById('modal-priority').value = initialValues.priority || 'medium'
+      document.getElementById('modal-complexity').value = initialValues.complexity || 'medium'
+      document.getElementById('add-modal').classList.remove('hidden')
+    }
+
+    function closeAddModal() {
+      document.getElementById('add-modal').classList.add('hidden')
+    }
+
+    function handleAddIdea(event) {
+      event.preventDefault()
+      const newIdea = {
+        id: generateId(),
+        title: document.getElementById('modal-title').value,
+        description: document.getElementById('modal-description').value,
+        status: document.getElementById('modal-status').value,
+        priority: document.getElementById('modal-priority').value,
+        complexity: document.getElementById('modal-complexity').value,
+        createdAt: Date.now(),
+      }
+      ideas.unshift(newIdea)
+      saveToStorage()
+      closeAddModal()
+      render()
+    }
+
+    function deleteIdea(id) {
+      ideas = ideas.filter(i => i.id !== id)
+      expandedId = null
+      saveToStorage()
+      render()
+    }
+
+    function openDetailModal(id) {
+      const idea = ideas.find(i => i.id === id)
+      if (!idea) return
+
+      document.getElementById('detail-id').value = idea.id
+      document.getElementById('detail-title').value = idea.title
+      document.getElementById('detail-description').value = idea.description || ''
+      document.getElementById('detail-status').value = idea.status || 'backlog'
+      document.getElementById('detail-priority').value = idea.priority || 'medium'
+      document.getElementById('detail-complexity').value = idea.complexity || 'medium'
+      document.getElementById('detail-created').textContent = `Created: ${formatDate(idea.createdAt)}`
+      document.getElementById('detail-modal').classList.remove('hidden')
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detail-modal').classList.add('hidden')
+    }
+
+    function handleUpdateIdea(event) {
+      event.preventDefault()
+      const id = document.getElementById('detail-id').value
+      const idea = ideas.find(i => i.id === id)
+      if (!idea) return
+
+      idea.title = document.getElementById('detail-title').value
+      idea.description = document.getElementById('detail-description').value
+      idea.status = document.getElementById('detail-status').value
+      idea.priority = document.getElementById('detail-priority').value
+      idea.complexity = document.getElementById('detail-complexity').value
+
+      if (idea.status === 'shipped' && !idea.shippedAt) {
+        idea.shippedAt = Date.now()
+      }
+
+      saveToStorage()
+      closeDetailModal()
+      render()
+    }
+
+    function deleteIdeaFromModal() {
+      const id = document.getElementById('detail-id').value
+      ideas = ideas.filter(i => i.id !== id)
+      saveToStorage()
+      closeDetailModal()
+      render()
+    }
+
+    function handleDragStart(event, id) {
+      draggedId = id
+      event.dataTransfer.effectAllowed = 'move'
+    }
+
+    function handleDragEnd() {
+      draggedId = null
+    }
+
+    function handleDrop(event, targetValue) {
+      event.preventDefault()
+      if (!draggedId) return
+
+      const idea = ideas.find(i => i.id === draggedId)
+      if (idea) {
+        idea[groupBy] = targetValue
+        if (groupBy === 'status' && targetValue === 'shipped' && !idea.shippedAt) {
+          idea.shippedAt = Date.now()
+        }
+        saveToStorage()
+        render()
+      }
+      draggedId = null
+    }
+
+    function handleMatrixDrop(event, quadrant) {
+      event.preventDefault()
+      if (!draggedId) return
+
+      const idea = ideas.find(i => i.id === draggedId)
+      if (idea) {
+        const [priority, complexity] = quadrant.split('-')
+        idea.priority = priority
+        idea.complexity = complexity
+        saveToStorage()
+        render()
+      }
+      draggedId = null
+    }
+
+    // =============================================================================
+    // INIT
+    // =============================================================================
+    loadFromStorage()
+    render()
+  </script>
+</body>
+</html>
