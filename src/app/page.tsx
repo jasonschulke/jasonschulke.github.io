@@ -255,7 +255,7 @@ export default function Home() {
                 >
                   career
                 </Link>{' '}
-                has been built around creating real value for the people I work with.
+                has been built around creating real value for both customers and colleagues.
               </p>
               <h2 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
                 I care deeply about culture and how we work together.
