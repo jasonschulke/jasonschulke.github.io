@@ -100,6 +100,7 @@ interface Role {
   logo: typeof prepWorkLogo
   start: string | { label: string; dateTime: string }
   end: string | { label: string; dateTime: string }
+  url?: string
 }
 
 function Role({ role }: { role: Role }) {
@@ -111,21 +112,42 @@ function Role({ role }: { role: Role }) {
   let endLabel = typeof role.end === 'string' ? role.end : role.end.label
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
 
+  const logoImage = (
+    <Image
+      src={role.logo}
+      alt={role.company}
+      className="h-7 w-7 object-contain"
+      unoptimized
+    />
+  )
+
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full bg-white dark:bg-zinc-800">
-        <Image
-          src={role.logo}
-          alt={role.company}
-          className="h-7 w-7 object-contain"
-          unoptimized
-        />
+        {role.url ? (
+          <Link href={role.url} target="_blank" rel="noopener noreferrer">
+            {logoImage}
+          </Link>
+        ) : (
+          logoImage
+        )}
       </div>
       <dl className="flex flex-auto flex-col">
         <div className="flex items-center justify-between">
           <dt className="sr-only">Company</dt>
           <dd className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            {role.company}
+            {role.url ? (
+              <Link
+                href={role.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-indigo-500 dark:hover:text-indigo-400"
+              >
+                {role.company}
+              </Link>
+            ) : (
+              role.company
+            )}
           </dd>
           <dt className="sr-only">Date</dt>
           <dd
@@ -157,6 +179,7 @@ function Resume() {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
+      url: 'https://prepwork.co',
     },
     {
       company: 'Common Room',
@@ -164,6 +187,7 @@ function Resume() {
       logo: commonRoomLogo,
       start: '2023',
       end: '2024',
+      url: 'https://commonroom.io',
     },
     {
       company: 'Airtable',
@@ -171,14 +195,17 @@ function Resume() {
       logo: airtableLogo,
       start: '2018',
       end: '2023',
+      url: 'https://airtable.com',
     },
   ]
 
   return (
     <div className="rounded-2xl border border-zinc-200 p-6 dark:border-zinc-600">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Recent Work</span>
+      <h2 className="flex items-center gap-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-white dark:bg-zinc-800">
+          <BriefcaseIcon className="h-6 w-6" />
+        </div>
+        <span>Recent Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
@@ -187,11 +214,11 @@ function Resume() {
       </ol>
       <Button
         href="/experience"
-        variant="secondary"
-        className="group mt-6 w-full"
+        variant="primary"
+        className="group mt-6 w-full bg-indigo-500 hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-500"
       >
         View All Experience
-        <ArrowDownIcon className="h-4 w-4 rotate-[-90deg] stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowDownIcon className="h-4 w-4 rotate-[-90deg] stroke-white transition" />
       </Button>
     </div>
   )
@@ -243,30 +270,30 @@ export default function Home() {
             <div className="mt-8 lg:mt-0 flex flex-wrap gap-x-6 gap-y-3">
               <Link
                 href="https://github.com/jasonschulke"
-                className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-indigo-500 dark:text-zinc-400 dark:hover:text-indigo-400"
+                className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
               >
-                <GitHubIcon className="h-5 w-5 flex-none fill-zinc-500 transition group-hover:fill-indigo-500" />
+                <GitHubIcon className="h-5 w-5 flex-none fill-zinc-800 dark:fill-zinc-300" />
                 GitHub
               </Link>
               <Link
                 href="https://linkedin.com/in/jasonschulke"
-                className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-indigo-500 dark:text-zinc-400 dark:hover:text-indigo-400"
+                className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-[#0A66C2] dark:text-zinc-400 dark:hover:text-[#0A66C2]"
               >
-                <LinkedInIcon className="h-5 w-5 flex-none fill-zinc-500 transition group-hover:fill-indigo-500" />
+                <LinkedInIcon className="h-5 w-5 flex-none fill-[#0A66C2]" />
                 LinkedIn
               </Link>
               <Link
                 href="https://producteducation.substack.com"
-                className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-indigo-500 dark:text-zinc-400 dark:hover:text-indigo-400"
+                className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-[#FF6719] dark:text-zinc-400 dark:hover:text-[#FF6719]"
               >
-                <SubstackIcon className="h-5 w-5 flex-none fill-zinc-500 transition group-hover:fill-indigo-500" />
+                <SubstackIcon className="h-5 w-5 flex-none fill-[#FF6719]" />
                 Substack
               </Link>
               <Link
                 href="mailto:jasonschulke@gmail.com"
                 className="group flex items-center gap-2 text-sm font-medium text-zinc-600 transition hover:text-indigo-500 dark:text-zinc-400 dark:hover:text-indigo-400"
               >
-                <MailIcon className="h-5 w-5 flex-none fill-zinc-500 transition group-hover:fill-indigo-500" />
+                <MailIcon className="h-5 w-5 flex-none fill-indigo-500" />
                 Email
               </Link>
             </div>
