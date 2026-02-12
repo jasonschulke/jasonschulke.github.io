@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Container } from '@/components/Container'
 
 import billboardImage from './urban-billboard-mockup.png'
@@ -43,7 +44,16 @@ export default function CardboardCo() {
         </div>
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
           An exercise in building an idea, a brand, and testing product-market
-          fit. Cardboard Co is a hyperlocal recycling pickup service in Austin,
+          fit.{' '}
+          <Link
+            href="https://justcardboard.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300"
+          >
+            Cardboard Co
+          </Link>{' '}
+          is a hyperlocal recycling pickup service in Austin,
           TX, currently running as a pilot in three neighborhoods.
         </p>
       </header>
@@ -123,7 +133,13 @@ export default function CardboardCo() {
             </li>
             <li>
               <strong className="text-zinc-900 dark:text-zinc-100">
-                Text reminders
+                Custom booking forms
+              </strong>{' '}
+              for scheduling pickups and managing customer preferences
+            </li>
+            <li>
+              <strong className="text-zinc-900 dark:text-zinc-100">
+                Text and email reminders
               </strong>{' '}
               so customers get a heads-up before each pickup
             </li>
@@ -134,10 +150,6 @@ export default function CardboardCo() {
               (the unglamorous but essential part)
             </li>
           </ul>
-          <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            No app, no complex logistics software. Text messages and a
-            spreadsheet. The goal is learning, not scaling.
-          </p>
         </section>
 
         <div className="mt-12">
@@ -183,7 +195,10 @@ export default function CardboardCo() {
             <TechTag>Next.js</TechTag>
             <TechTag>Tailwind CSS</TechTag>
             <TechTag>Stripe</TechTag>
+            <TechTag>Supabase</TechTag>
+            <TechTag>Val Town</TechTag>
             <TechTag>Netlify</TechTag>
+            <TechTag>GitHub</TechTag>
           </div>
         </section>
 
@@ -197,8 +212,8 @@ export default function CardboardCo() {
               is the right starting constraint
             </LearningItem>
             <LearningItem>
-              Simple beats sophisticated when validating an idea; a spreadsheet
-              can run operations longer than you&apos;d think
+              Simple beats sophisticated when validating an idea; start with
+              the minimum tooling needed to test demand
             </LearningItem>
             <LearningItem>
               Brand trust matters more for services that come to your
