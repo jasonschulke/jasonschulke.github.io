@@ -128,7 +128,7 @@ function MobileNavigation(
             <MobileNavItem href="/">Home</MobileNavItem>
             <MobileNavItem href="/experience">Experience</MobileNavItem>
             <li>
-              <PopoverButton as={Link} href="/projects" className="block py-2">
+              <PopoverButton as={Link} href="/projects" className="block py-2 text-zinc-800 dark:text-zinc-200">
                 Projects
               </PopoverButton>
               <ul className="ml-4 border-l border-zinc-200 pl-4 dark:border-zinc-700">
@@ -138,8 +138,29 @@ function MobileNavigation(
                   </PopoverButton>
                 </li>
                 <li>
-                  <PopoverButton as={Link} href="/projects/automation-comparison" className="block py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
-                    Automation Comparison Tool
+                  <PopoverButton as={Link} href="/projects/moove" className="block py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    Moove
+                  </PopoverButton>
+                </li>
+                <li>
+                  <PopoverButton as={Link} href="/projects/return-window" className="flex items-center gap-2 py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    Return Window
+                    <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                      Soon
+                    </span>
+                  </PopoverButton>
+                </li>
+                <li>
+                  <PopoverButton as={Link} href="/projects/cardboard-co" className="flex items-center gap-2 py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    Cardboard Co
+                    <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                      Pilot
+                    </span>
+                  </PopoverButton>
+                </li>
+                <li>
+                  <PopoverButton as={Link} href="/projects/zap-or-make" className="block py-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    Zap or Make
                   </PopoverButton>
                 </li>
               </ul>
@@ -182,9 +203,11 @@ function NavItem({
 }
 
 const projectsSubpages = [
-  { href: '/projects', label: 'All Projects' },
   { href: '/projects/buckets', label: 'Buckets' },
-  { href: '/projects/automation-comparison', label: 'Automation Comparison Tool' },
+  { href: '/projects/moove', label: 'Moove' },
+  { href: '/projects/return-window', label: 'Return Window', comingSoon: true },
+  { href: '/projects/cardboard-co', label: 'Cardboard Co', pilot: true },
+  { href: '/projects/zap-or-make', label: 'Zap or Make' },
 ]
 
 function ProjectsDropdown() {
@@ -212,13 +235,32 @@ function ProjectsDropdown() {
           transition
           className="absolute left-0 top-full z-50 mt-2 w-56 origin-top-left rounded-xl bg-white p-2 shadow-lg ring-1 ring-zinc-900/5 transition duration-100 ease-out data-closed:scale-95 data-closed:opacity-0 dark:bg-zinc-800 dark:ring-white/10"
         >
+          <MenuItem>
+            <Link
+              href="/projects"
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-zinc-900 transition hover:bg-zinc-100 data-focus:bg-zinc-100 dark:text-zinc-100 dark:hover:bg-zinc-700 dark:data-focus:bg-zinc-700"
+            >
+              View All
+            </Link>
+          </MenuItem>
+          <div className="my-1 h-px bg-zinc-200 dark:bg-zinc-700" />
           {projectsSubpages.map((item) => (
             <MenuItem key={item.href}>
               <Link
                 href={item.href}
-                className="block rounded-lg px-3 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 data-focus:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:data-focus:bg-zinc-700"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-zinc-700 transition hover:bg-zinc-100 data-focus:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:data-focus:bg-zinc-700"
               >
                 {item.label}
+                {item.comingSoon && (
+                  <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                    Soon
+                  </span>
+                )}
+                {item.pilot && (
+                  <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                    Pilot
+                  </span>
+                )}
               </Link>
             </MenuItem>
           ))}
