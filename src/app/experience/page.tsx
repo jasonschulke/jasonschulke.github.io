@@ -29,6 +29,7 @@ const workHistory: WorkRole[] = [
     period: '2024 - Present',
     logo: prepWorkLogo,
     highlights: [
+      'Built a custom full-stack React application to replace tedious manual processes for an event company. Developed interactive 2D/3D stage configurator with real-time rendering (Konva.js, PixiJS), role-based permissions, and serverless API (Netlify Functions, Supabase). Enabled staff to generate accurate quotes with automated material calculations in minutes instead of hours.',
       'Designed and shipped a full customer education ecosystem (LMS, documentation, certification) for a complex SaaS product, enabling self-service that reduced support volume and increased customer retention.',
       'Developed a custom web app for a modular flooring manufacturer, integrating design, quoting, and production data to automate workflows, reduce manual input, and improve order accuracy.',
       'Built a global campaign management platform for Levi to unify 100K+ products and creative assets, streamlining marketing operations across teams and regions.',

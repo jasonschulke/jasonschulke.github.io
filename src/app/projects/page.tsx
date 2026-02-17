@@ -8,6 +8,7 @@ import mooveHero from './moove/moove_hero.png'
 import returnWindowHero from './return_window.png'
 import cardboardHero from './cardboard-co/urban-billboard-mockup.png'
 import zapMakeHero from './zap_make.png'
+import claudeSkillsHero from './claude-code-skills/hero.png'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -24,6 +25,29 @@ type Project = {
 
 const projects: Project[] = [
   {
+    name: 'Return Window',
+    description:
+      'Never miss a return deadline again. Forward your order confirmations and get reminded before return windows close.',
+    href: '/projects/return-window',
+    image: returnWindowHero,
+    badge: { label: 'Soon', variant: 'soon' },
+  },
+  {
+    name: 'Cardboard Co',
+    description:
+      'An exercise in building an idea, brand, and testing product-market fit with a hyperlocal recycling service in Austin, TX.',
+    href: '/projects/cardboard-co',
+    image: cardboardHero,
+    badge: { label: 'Pilot', variant: 'pilot' },
+  },
+  {
+    name: 'Claude Code Skills',
+    description:
+      'A suite of complementary Claude Code skills for managing project context, progress, and releases.',
+    href: '/projects/claude-code-skills',
+    image: claudeSkillsHero,
+  },
+  {
     name: 'Buckets',
     description:
       'A simple prioritization tool with a retro twist. Drop tasks into buckets, drag to reorder, and focus on what matters most.',
@@ -36,22 +60,6 @@ const projects: Project[] = [
       'A minimalist, offline-first workout tracker with AI coaching built-in. Designed for people who want to stay consistent without the bloat.',
     href: '/projects/moove',
     image: mooveHero,
-  },
-  {
-    name: 'Return Window',
-    description:
-      'Never miss a return deadline again. Forward your order confirmations and get reminded before return windows close.',
-    href: '/projects/return-window',
-    image: returnWindowHero,
-    badge: { label: 'Soon', variant: 'soon' },
-  },
-  {
-    name: 'Cardboard Co',
-    description:
-      'An exercise in building an idea, a brand, and testing product-market fit. A hyperlocal recycling pickup service in Austin, TX.',
-    href: '/projects/cardboard-co',
-    image: cardboardHero,
-    badge: { label: 'Pilot', variant: 'pilot' },
   },
   {
     name: 'Zap or Make',
