@@ -3,11 +3,11 @@ import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 
-import bucketsHero from './buckets.png'
+import bucketsHero from './buckets/buckets.png'
 import mooveHero from './moove/moove_hero.png'
-import returnWindowHero from './return_window.png'
+import returnWindowHero from './return-window/return_window.png'
 import cardboardHero from './cardboard-co/urban-billboard-mockup.png'
-import zapMakeHero from './zap_make.png'
+import zapMakeHero from './zapier-or-make/zapier_vs_make_project_image.png'
 import claudeSkillsHero from './claude-code-skills/hero.png'
 
 export const metadata: Metadata = {
@@ -62,10 +62,10 @@ const projects: Project[] = [
     image: mooveHero,
   },
   {
-    name: 'Zap or Make',
+    name: 'Zapier or Make',
     description:
-      'A cost comparison tool for Zapier and Make. Estimates your Make operations based on Zapier usage and compares pricing tiers.',
-    href: '/projects/zap-or-make',
+      'Zapier and Make use fundamentally different billing models. This tool estimates your Make operations from Zapier usage and finds the lowest-cost plan.',
+    href: '/projects/zapier-or-make',
     image: zapMakeHero,
   },
 ]
