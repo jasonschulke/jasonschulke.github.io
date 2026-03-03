@@ -9,6 +9,7 @@ import returnWindowHero from './return-window/return_window.png'
 import cardboardHero from './cardboard-co/urban-billboard-mockup.png'
 import zapMakeHero from './zapier-or-make/zapier_vs_make_project_image.png'
 import claudeSkillsHero from './claude-code-skills/hero.png'
+import maxHero from './max/max_hero.png'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -24,6 +25,13 @@ type Project = {
 }
 
 const projects: Project[] = [
+  {
+    name: 'Max',
+    description:
+      'A lightweight macOS menu bar app that gives you full control over your Dock appearance with customizable visual effects, colors, and materials.',
+    href: '/projects/max',
+    image: maxHero,
+  },
   {
     name: 'Return Window',
     description:

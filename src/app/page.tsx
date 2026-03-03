@@ -242,11 +242,7 @@ export default function Home() {
                 systems that scale.
               </h1>
               <div className="mt-6 space-y-7 text-lg text-zinc-600 dark:text-zinc-400">
-              <p>
-                As a consultant, my focus is helping complex products reduce
-                friction, improve clarity, and enable better decisions at scale.
-                My work spans strategy, process, software development, and content.
-              </p>
+              
               <p>
                 My{' '}
                 <Link
@@ -256,6 +252,11 @@ export default function Home() {
                   career
                 </Link>{' '}
                 has been built around creating real value for both customers and colleagues.
+              </p>
+              <p>
+                As a consultant, my focus is helping complex products reduce
+                friction, improve clarity, and enable better decisions at scale.
+                My work spans strategy, process, software development, and content.
               </p>
               <h2 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
                 I care deeply about culture and how we work together.
