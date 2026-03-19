@@ -10,6 +10,7 @@ import cardboardHero from './cardboard-co/urban-billboard-mockup.png'
 import zapMakeHero from './zapier-or-make/zapier_vs_make_project_image.png'
 import claudeSkillsHero from './claude-code-skills/hero.png'
 import maxHero from './max/max_hero.png'
+import papayaHero from './papaya/papaya_hero.png'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -25,6 +26,13 @@ type Project = {
 }
 
 const projects: Project[] = [
+  {
+    name: 'Papaya',
+    description:
+      'A unified house hunting tool that lets you save, rate, and organize homes from any listing site with just one click.',
+    href: '/projects/papaya',
+    image: papayaHero,
+  },
   {
     name: 'Max',
     description:

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 
 import heroImage from './max_hero.png'
-import settingsImage from '@/../../public/max_settings.png'
+import settingsImage from './max_settings.png'
 
 export const metadata: Metadata = {
   title: 'Max - macOS Dock Customization Utility',

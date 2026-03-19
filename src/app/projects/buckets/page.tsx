@@ -16,7 +16,7 @@ export default function Buckets() {
       </header>
       <div className="mt-12">
         <iframe
-          src="/tools/buckets/index.html"
+          src="/buckets/index.html"
           className="w-full border border-zinc-200 dark:border-zinc-700"
           style={{ height: '85vh', minHeight: '600px' }}
           title="Buckets"
