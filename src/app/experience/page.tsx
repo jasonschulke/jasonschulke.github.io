@@ -12,11 +12,11 @@ import habitatLogo from '@/images/habitat.png'
 export const metadata: Metadata = {
   title: 'Experience',
   description:
-    'My professional journey through customer education, support operations, and solutions architecture.',
+    'My professional journey through support operations, customer education, and scalable systems design.',
   openGraph: {
     title: 'Experience - Jason Schulke',
     description:
-      'My professional journey through customer education, support operations, and solutions architecture.',
+      'My professional journey through support operations, customer education, and scalable systems design.',
   },
 }
 
@@ -45,9 +45,10 @@ const workHistory: WorkRole[] = [
     period: '2023 - 2024',
     logo: commonRoomLogo,
     highlights: [
+      "Hired to build Common Room's customer education function from the ground up during a period of rapid product evolution.",
       'Created a scalable education and enablement strategy aligned with a company-wide shift toward self-service, cutting onboarding time by 50% and technical integration time by 60%.',
       'Worked directly with customers and support teams to investigate complex integration and feature-related issues, translating those findings into documentation, tooling, and internal process changes.',
-      'Partnered closely with Product and Engineering to support feature launches, identify emerging support risks, and improve customer understanding during periods of rapid change.',
+      'Partnered closely with Product, Engineering, Sales, and Success to support feature launches, identify emerging support risks, and improve customer understanding during periods of rapid change.',
     ],
   },
   {
@@ -71,7 +72,9 @@ const workHistory: WorkRole[] = [
     location: 'Austin, TX',
     period: '2013 - 2018',
     logo: austinStoneLogo,
-    highlights: [],
+    highlights: [
+      'Led operations programs across a multi-site organization, managing logistics, budgets, and cross-team coordination.',
+    ],
   },
   {
     title: 'Director of Operations',
@@ -79,7 +82,9 @@ const workHistory: WorkRole[] = [
     location: 'Bryan, TX',
     period: '2011 - 2013',
     logo: habitatLogo,
-    highlights: [],
+    highlights: [
+      'Directed operations for the local affiliate, overseeing construction schedules, volunteer coordination, and community partnerships.',
+    ],
   },
 ]
 
@@ -87,7 +92,7 @@ export default function Experience() {
   return (
     <SimpleLayout
       title="Experience"
-      intro="My professional journey through customer education, support operations, and solutions architecture."
+      intro="My professional journey through support operations, customer education, and scalable systems design."
     >
       <div className="space-y-20">
         <Section title="Work history">

@@ -36,7 +36,7 @@ const jsonLd = {
     addressCountry: 'US',
   },
   description:
-    'Solutions Architect and Customer Education Leader designing operational and customer-facing systems for complex products.',
+    'Operations and CX Leader designing operational and customer-facing systems for complex products.',
 }
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -251,12 +251,12 @@ export default function Home() {
                 >
                   career
                 </Link>{' '}
-                has been built around creating real value for both customers and colleagues.
+                has been built around designing and scaling the operational systems behind great customer experiences.
               </p>
               <p>
-                As a consultant, my focus is helping complex products reduce
-                friction, improve clarity, and enable better decisions at scale.
-                My work spans strategy, process, software development, and content.
+                As a consultant, I help companies design the systems that connect
+                support, education, and product operations—reducing friction,
+                improving clarity, and enabling better decisions at scale.
               </p>
               <h2 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
                 I care deeply about culture and how we work together.

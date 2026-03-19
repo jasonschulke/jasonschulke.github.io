@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     template: '%s - Jason Schulke',
-    default: 'Jason Schulke - Solutions Architect & Customer Education Leader',
+    default: 'Jason Schulke - Operations & CX Leader',
   },
   description:
     'I design operational and customer-facing systems for complex products, focusing on reducing friction, improving clarity, and enabling better decisions at scale.',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Jason Schulke',
-    title: 'Jason Schulke - Solutions Architect & Customer Education Leader',
+    title: 'Jason Schulke - Operations & CX Leader',
     description:
       'I design operational and customer-facing systems for complex products, focusing on reducing friction, improving clarity, and enabling better decisions at scale.',
     images: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jason Schulke - Solutions Architect & Customer Education Leader',
+    title: 'Jason Schulke - Operations & CX Leader',
     description:
       'I design operational and customer-facing systems for complex products, focusing on reducing friction, improving clarity, and enabling better decisions at scale.',
     images: ['/og-image.png'],
