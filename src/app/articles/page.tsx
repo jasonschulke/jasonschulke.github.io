@@ -39,15 +39,9 @@ function formatDate(dateString: string): string {
 
 function Article({ article }: { article: FeedItem }) {
   return (
-    <article className="group relative flex flex-col rounded-2xl border border-zinc-200 p-6 transition hover:border-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-500">
-      <time
-        dateTime={article.pubDate}
-        className="mb-3 text-sm text-zinc-500 dark:text-zinc-400"
-      >
-        {formatDate(article.pubDate)}
-      </time>
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 transition hover:border-zinc-300 dark:border-zinc-600 dark:hover:border-zinc-500">
       {article.image && (
-        <div className="relative mb-4 aspect-[2/1] w-full overflow-hidden rounded-lg bg-zinc-100 dark:bg-zinc-800">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-50 dark:bg-zinc-900">
           <img
             src={article.image}
             alt=""
@@ -55,20 +49,28 @@ function Article({ article }: { article: FeedItem }) {
           />
         </div>
       )}
-      <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-        <Link href={article.link} target="_blank" rel="noopener noreferrer">
-          <span className="absolute inset-0 z-10" />
-          {article.title}
-        </Link>
-      </h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        {article.description}
-      </p>
-      <div className="mt-4 flex items-center text-sm font-medium text-indigo-500">
-        Read article
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="ml-1 h-4 w-4 stroke-current">
-          <path d="M6.75 5.75 9.25 8l-2.5 2.25" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+      <div className="flex flex-1 flex-col bg-zinc-50 p-6 dark:bg-zinc-900">
+        <time
+          dateTime={article.pubDate}
+          className="mb-3 text-sm text-zinc-500 dark:text-zinc-400"
+        >
+          {formatDate(article.pubDate)}
+        </time>
+        <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+          <Link href={article.link} target="_blank" rel="noopener noreferrer">
+            <span className="absolute inset-0 z-10" />
+            {article.title}
+          </Link>
+        </h2>
+{/* <p className="mt-2 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+          {article.description}
+        </p> */}
+        <div className="mt-auto flex items-center pt-4 text-sm font-medium text-indigo-500">
+          Read article
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="ml-1 h-4 w-4 stroke-current">
+            <path d="M6.75 5.75 9.25 8l-2.5 2.25" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
     </article>
   )

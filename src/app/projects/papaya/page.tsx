@@ -2,8 +2,8 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
 
-import heroImage from './papaya_hero.png'
-import appImage from './papaya_app.jpg'
+import appImage1 from './papaya_1.png'
+import appImage2 from './papaya_2.jpg'
 
 export const metadata: Metadata = {
   title: 'Papaya - House Search Companion',
@@ -35,16 +35,14 @@ export default function Papaya() {
           in one place.
         </p>
       </header>
-
-      <div className="mt-12">
-        <Image
-          src={heroImage}
-          alt="Papaya app showing saved home listings"
-          className="rounded-2xl"
-          priority
-        />
-      </div>
-
+      
+ <div className="mt-12">
+          <Image
+            src={appImage1}
+            alt="Papaya app interface"
+            className="rounded-2xl"
+          />
+        </div>
       <div className="mt-16">
         <section>
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
@@ -78,8 +76,8 @@ export default function Papaya() {
 
         <div className="mt-12">
           <Image
-            src={appImage}
-            alt="Papaya app interface"
+            src={appImage2}
+            alt="Papaya app route planning"
             className="rounded-2xl"
           />
         </div>

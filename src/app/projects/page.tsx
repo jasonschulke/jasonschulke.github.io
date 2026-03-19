@@ -10,7 +10,7 @@ import cardboardHero from './cardboard-co/urban-billboard-mockup.png'
 import zapMakeHero from './zapier-or-make/zapier_vs_make_project_image.png'
 import claudeSkillsHero from './claude-code-skills/hero.png'
 import maxHero from './max/max_hero.png'
-import papayaHero from './papaya/papaya_hero.png'
+import papayaHero from './papaya/papaya_hero.jpg'
 
 export const metadata: Metadata = {
   title: 'Projects',
