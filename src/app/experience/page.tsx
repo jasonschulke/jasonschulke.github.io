@@ -14,11 +14,11 @@ import makeLogo from '@/images/make_logo.png'
 export const metadata: Metadata = {
   title: 'Experience',
   description:
-    'My professional journey through support operations, customer education, and scalable systems design.',
+    'My professional journey through operations, customer support and education, scalable systems design, and software development.',
   openGraph: {
     title: 'Experience - Jason Schulke',
     description:
-      'My professional journey through support operations, customer education, and scalable systems design.',
+      'My professional journey through operations, customer support and education, scalable systems design, and software development.',
   },
 }
 
@@ -94,7 +94,7 @@ export default function Experience() {
   return (
     <SimpleLayout
       title="Experience"
-      intro="My professional journey through support operations, customer education, and scalable systems design."
+      intro="My professional journey through operations, customer support and education, scalable systems design, and software development."
     >
       <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-16">
         {/* Work History - Left Column */}
