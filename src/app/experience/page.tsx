@@ -1,7 +1,6 @@
 import { type Metadata } from 'next'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
-import { Section } from '@/components/Section'
 import { WorkHistory, type WorkRole } from '@/components/WorkHistory'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -97,126 +96,137 @@ export default function Experience() {
       title="Experience"
       intro="My professional journey through support operations, customer education, and scalable systems design."
     >
-      <div className="space-y-20">
-        <Section title="Work history">
+      <div className="grid gap-12 lg:grid-cols-[1fr_280px] lg:gap-16">
+        {/* Work History - Left Column */}
+        <div>
+          <h2 className="mb-6 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+            Work history
+          </h2>
           <WorkHistory roles={workHistory} />
-        </Section>
-        <Section title="Certifications">
-          <div className="flex flex-wrap gap-8">
-            <Link
-              href="https://www.credly.com/badges/18277559-0cb9-4565-9dd3-35a3f1697282/public_url"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3"
-            >
-              <Image
-                src={makeAiAgentBadge}
-                alt="Make AI Agent Builder Certification"
-                className="h-24 w-24 transition group-hover:scale-105"
-              />
-              <div className="text-center">
-                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  AI Agent Builder
-                </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Make Academy · 2026
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="https://coursera.org/verify/XIAIVIXBGEZ8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3"
-            >
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white transition group-hover:scale-105 dark:bg-zinc-800">
-                <svg viewBox="0 0 24 24" className="h-14 w-14" aria-hidden="true">
-                  <path
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    fill="#4285F4"
-                  />
-                  <path
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    fill="#34A853"
-                  />
-                  <path
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    fill="#FBBC05"
-                  />
-                  <path
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    fill="#EA4335"
-                  />
-                </svg>
-              </div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  AI Fundamentals
-                </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Google · 2026
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="https://coursera.org/share/9653a059323d2a5ad53a86007e403094"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3"
-            >
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white transition group-hover:scale-105 dark:bg-zinc-800">
-                <svg viewBox="0 0 24 24" className="h-14 w-14" aria-hidden="true">
-                  <path
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    fill="#4285F4"
-                  />
-                  <path
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    fill="#34A853"
-                  />
-                  <path
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    fill="#FBBC05"
-                  />
-                  <path
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    fill="#EA4335"
-                  />
-                </svg>
-              </div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  AI for Planning
-                </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Google · 2026
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="https://verify.skilljar.com/c/bo2pzkz6zu2q"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3"
-            >
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white transition group-hover:scale-105 dark:bg-zinc-800">
+        </div>
+
+        {/* Certifications - Right Sidebar */}
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <h2 className="mb-6 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+            Certifications
+          </h2>
+          <div className="rounded-2xl border border-zinc-100 bg-zinc-50 p-4 dark:border-zinc-700/40 dark:bg-zinc-800/50">
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-1 lg:gap-3">
+              <Link
+                href="https://www.credly.com/badges/18277559-0cb9-4565-9dd3-35a3f1697282/public_url"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-lg p-2 transition hover:bg-white dark:hover:bg-zinc-700/50 lg:flex-col lg:items-center lg:p-3"
+              >
                 <Image
-                  src={airtableLogo}
-                  alt="Airtable Builder Certification"
-                  className="h-16 w-16 object-contain"
+                  src={makeAiAgentBadge}
+                  alt="Make AI Agent Builder Certification"
+                  className="h-12 w-12 shrink-0 transition group-hover:scale-105 lg:h-16 lg:w-16"
                 />
-              </div>
-              <div className="text-center">
-                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  Certified Builder
-                </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Airtable Academy · 2024
-                </p>
-              </div>
-            </Link>
+                <div className="lg:text-center">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                    AI Agent Builder
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Make · 2026
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href="https://coursera.org/verify/XIAIVIXBGEZ8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-lg p-2 transition hover:bg-white dark:hover:bg-zinc-700/50 lg:flex-col lg:items-center lg:p-3"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-100 transition group-hover:scale-105 dark:bg-zinc-800 lg:h-16 lg:w-16">
+                  <svg viewBox="0 0 24 24" className="h-7 w-7 lg:h-9 lg:w-9" aria-hidden="true">
+                    <path
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      fill="#4285F4"
+                    />
+                    <path
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      fill="#34A853"
+                    />
+                    <path
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      fill="#FBBC05"
+                    />
+                    <path
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      fill="#EA4335"
+                    />
+                  </svg>
+                </div>
+                <div className="lg:text-center">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                    AI Fundamentals
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Google · 2026
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href="https://coursera.org/share/9653a059323d2a5ad53a86007e403094"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-lg p-2 transition hover:bg-white dark:hover:bg-zinc-700/50 lg:flex-col lg:items-center lg:p-3"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-100 transition group-hover:scale-105 dark:bg-zinc-800 lg:h-16 lg:w-16">
+                  <svg viewBox="0 0 24 24" className="h-7 w-7 lg:h-9 lg:w-9" aria-hidden="true">
+                    <path
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      fill="#4285F4"
+                    />
+                    <path
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      fill="#34A853"
+                    />
+                    <path
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      fill="#FBBC05"
+                    />
+                    <path
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      fill="#EA4335"
+                    />
+                  </svg>
+                </div>
+                <div className="lg:text-center">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                    AI for Planning
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Google · 2026
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href="https://verify.skilljar.com/c/bo2pzkz6zu2q"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-lg p-2 transition hover:bg-white dark:hover:bg-zinc-700/50 lg:flex-col lg:items-center lg:p-3"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-100 transition group-hover:scale-105 dark:bg-zinc-800 lg:h-16 lg:w-16">
+                  <Image
+                    src={airtableLogo}
+                    alt="Airtable Builder Certification"
+                    className="h-8 w-8 object-contain lg:h-10 lg:w-10"
+                  />
+                </div>
+                <div className="lg:text-center">
+                  <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                    Certified Builder
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    Airtable · 2024
+                  </p>
+                </div>
+              </Link>
+            </div>
           </div>
-        </Section>
+        </div>
       </div>
     </SimpleLayout>
   )
