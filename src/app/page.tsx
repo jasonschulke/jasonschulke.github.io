@@ -12,6 +12,7 @@ import commonRoomLogo from '@/images/Common Room_logo.png'
 import airtableLogo from '@/images/airtable_logo.png'
 import craigStossImage from '@/images/craig_stoss.jpg'
 import joshGroseImage from '@/images/josh_grose.jpg'
+import makeAiAgentBadge from '@/images/make-ai-agent-builder.png'
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -360,6 +361,71 @@ export default function Home() {
             </div>
             <div className="lg:mt-12">
               <Resume />
+            </div>
+            <div className="mt-8 rounded-2xl border border-zinc-200 p-6 dark:border-zinc-600">
+              <h2 className="flex items-center gap-4 text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-white dark:bg-zinc-800">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"
+                      className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+                    />
+                  </svg>
+                </div>
+                <span>Certifications</span>
+              </h2>
+              <div className="mt-4 flex gap-6">
+                <Link
+                  href="https://www.credly.com/badges/18277559-0cb9-4565-9dd3-35a3f1697282/public_url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center gap-2"
+                >
+                  <Image
+                    src={makeAiAgentBadge}
+                    alt="Make AI Agent Builder Certification"
+                    className="h-14 w-14 transition group-hover:scale-105"
+                  />
+                  <div className="text-center">
+                    <p className="text-xs font-medium text-zinc-900 dark:text-zinc-100">
+                      AI Agent Builder
+                    </p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                      Make · 2026
+                    </p>
+                  </div>
+                </Link>
+                <Link
+                  href="https://verify.skilljar.com/c/bo2pzkz6zu2q"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center gap-2"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white transition group-hover:scale-105 dark:bg-zinc-800">
+                    <Image
+                      src={airtableLogo}
+                      alt="Airtable Builder Certification"
+                      className="h-10 w-10 object-contain"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs font-medium text-zinc-900 dark:text-zinc-100">
+                      Certified Builder
+                    </p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                      Airtable · 2024
+                    </p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

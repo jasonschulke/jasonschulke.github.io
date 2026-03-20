@@ -3,11 +3,14 @@ import { type Metadata } from 'next'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Section } from '@/components/Section'
 import { WorkHistory, type WorkRole } from '@/components/WorkHistory'
+import Image from 'next/image'
+import Link from 'next/link'
 import prepWorkLogo from '@/images/prep_work_logo.png'
 import commonRoomLogo from '@/images/Common Room_logo.png'
 import airtableLogo from '@/images/airtable_logo.png'
 import austinStoneLogo from '@/images/ascc.png'
 import habitatLogo from '@/images/habitat.png'
+import makeAiAgentBadge from '@/images/make-ai-agent-builder.png'
 
 export const metadata: Metadata = {
   title: 'Experience',
@@ -97,6 +100,52 @@ export default function Experience() {
       <div className="space-y-20">
         <Section title="Work history">
           <WorkHistory roles={workHistory} />
+        </Section>
+        <Section title="Certifications">
+          <div className="flex flex-wrap gap-8">
+            <Link
+              href="https://www.credly.com/badges/18277559-0cb9-4565-9dd3-35a3f1697282/public_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-3"
+            >
+              <Image
+                src={makeAiAgentBadge}
+                alt="Make AI Agent Builder Certification"
+                className="h-24 w-24 transition group-hover:scale-105"
+              />
+              <div className="text-center">
+                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  AI Agent Builder
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Make Academy · 2026
+                </p>
+              </div>
+            </Link>
+            <Link
+              href="https://verify.skilljar.com/c/bo2pzkz6zu2q"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center gap-3"
+            >
+              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white transition group-hover:scale-105 dark:bg-zinc-800">
+                <Image
+                  src={airtableLogo}
+                  alt="Airtable Builder Certification"
+                  className="h-16 w-16 object-contain"
+                />
+              </div>
+              <div className="text-center">
+                <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  Certified Builder
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Airtable Academy · 2024
+                </p>
+              </div>
+            </Link>
+          </div>
         </Section>
       </div>
     </SimpleLayout>
