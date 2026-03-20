@@ -66,7 +66,7 @@ function RoleHeader({ role }: { role: WorkRole }) {
         <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
           {role.title}
         </h3>
-        <div className="flex items-center gap-1 mt-0.5">
+        <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5 mt-0.5">
           {role.companyUrl ? (
             <a
               href={role.companyUrl}
@@ -85,12 +85,13 @@ function RoleHeader({ role }: { role: WorkRole }) {
           )}
           <span className="text-sm text-zinc-400 dark:text-zinc-500 flex-shrink-0">&middot;</span>
           <span className="text-sm text-zinc-500 dark:text-zinc-400 flex-shrink-0">
+            {role.location}
+          </span>
+          <span className="text-sm text-zinc-400 dark:text-zinc-500 flex-shrink-0">&middot;</span>
+          <span className="text-sm text-zinc-500 dark:text-zinc-400 flex-shrink-0">
             {role.period}
           </span>
         </div>
-        <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-          {role.location}
-        </p>
       </div>
     </div>
   )
@@ -124,17 +125,23 @@ function WorkHistoryItem({ role, defaultExpanded = false }: WorkHistoryItemProps
       </button>
       {isExpanded && (
         <div className="border-t border-zinc-100 px-6 pb-6 pt-4 dark:border-zinc-700/40">
-          <ul className="space-y-3">
-            {role.highlights.map((highlight, index) => (
-              <li
-                key={index}
-                className="flex items-start gap-3 text-sm text-zinc-600 dark:text-zinc-400"
-              >
-                <span className="mt-2 h-1 w-1 flex-none rounded-full bg-zinc-400 dark:bg-zinc-500" />
-                {highlight}
-              </li>
-            ))}
-          </ul>
+          {role.highlights.length === 1 ? (
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+              {role.highlights[0]}
+            </p>
+          ) : (
+            <ul className="space-y-3">
+              {role.highlights.map((highlight, index) => (
+                <li
+                  key={index}
+                  className="flex items-start gap-3 text-sm text-zinc-600 dark:text-zinc-400"
+                >
+                  <span className="mt-2 h-1 w-1 flex-none rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>
