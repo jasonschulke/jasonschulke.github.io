@@ -11,6 +11,7 @@ import zapMakeHero from './zapier-or-make/zapier_vs_make_project_image.png'
 import claudeSkillsHero from './claude-code-skills/hero.png'
 import maxHero from './max/max_hero.png'
 import papayaHero from './papaya/papaya_hero.jpg'
+import hootenannyHero from './hootenanny/hootenanny_hero.png'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -26,6 +27,13 @@ type Project = {
 }
 
 const projects: Project[] = [
+  {
+    name: 'Hootenanny',
+    description:
+      'A playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs — no accounts required.',
+    href: '/projects/hootenanny',
+    image: hootenannyHero,
+  },
   {
     name: 'Papaya',
     description:
