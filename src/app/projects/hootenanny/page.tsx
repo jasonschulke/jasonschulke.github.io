@@ -4,7 +4,7 @@ import { Container } from '@/components/Container'
 export const metadata: Metadata = {
   title: 'Hootenanny - Playful Event Invitations',
   description:
-    'A simple, playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs — no accounts required for guests.',
+    'A simple, playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs, with no accounts required for guests.',
 }
 
 function FeatureRow({ feature, description }: { feature: string; description: string }) {
@@ -36,20 +36,9 @@ export default function Hootenanny() {
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
           A playful event invitation web app inspired by Apple Invites. Spin up
           a beautiful invite in under a minute, share a link, and watch RSVPs
-          roll in — no accounts, no app store, no fuss.
+          roll in, with no accounts, no app store, and no fuss.
         </p>
       </header>
-
-      <div className="mt-12">
-        <a
-          href="https://invites.jasonschulke.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg bg-amber-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-amber-800 transition"
-        >
-          Visit Hootenanny →
-        </a>
-      </div>
 
       <div className="mt-16">
         <section>
@@ -58,7 +47,7 @@ export default function Hootenanny() {
           </h2>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
             Apple Invites is beautiful, but it only works if every guest has an
-            iPhone — and I wanted to send an invite to my daughter&apos;s dance
+            iPhone, and I wanted to send an invite to my daughter&apos;s dance
             recital without worrying about who was on which platform. Most
             alternatives are bloated with ads, upsells, or require guests to
             create an account just to say &ldquo;yes, I&apos;ll be there.&rdquo;
@@ -151,7 +140,7 @@ export default function Hootenanny() {
             Design
           </h2>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            The name came first — &ldquo;hootenanny&rdquo; is an old-fashioned
+            The name came first. &ldquo;Hootenanny&rdquo; is an old-fashioned
             word for an informal gathering, and it begged for an owl mascot. I
             built the whole UI around a warm brown, cream, and tan palette that
             feels more like a handwritten note than a SaaS dashboard. The
