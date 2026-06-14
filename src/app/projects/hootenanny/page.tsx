@@ -32,6 +32,25 @@ function TechTag({ children }: { children: React.ReactNode }) {
   )
 }
 
+function Screenshot({
+  src,
+  alt,
+  caption,
+}: {
+  src: typeof eventPreviewImg
+  alt: string
+  caption: string
+}) {
+  return (
+    <figure className="mt-8">
+      <Image src={src} alt={alt} className="mx-auto w-full max-w-md rounded-2xl" />
+      <figcaption className="mt-3 text-center text-sm text-zinc-500 dark:text-zinc-500">
+        {caption}
+      </figcaption>
+    </figure>
+  )
+}
+
 export default function Hootenanny() {
   return (
     <Container className="mt-9 sm:mt-16">
@@ -41,18 +60,16 @@ export default function Hootenanny() {
         </h1>
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
           A playful event invitation web app inspired by Apple Invites. Spin up
-          a beautiful invite in under a minute, share a link, and watch RSVPs
-          roll in, with no accounts, no app store, and no fuss.
+          a beautiful invite in under a minute, share a link, and watch the
+          RSVPs roll in &mdash; no accounts, no app store, no fuss.
         </p>
       </header>
 
-      <div className="mt-12 flex justify-center">
-        <Image
-          src={eventPreviewImg}
-          alt="A finished Hootenanny invite, ready to share"
-          className="w-full max-w-lg rounded-2xl"
-        />
-      </div>
+      <Screenshot
+        src={eventPreviewImg}
+        alt="A finished Hootenanny invite, ready to share"
+        caption="A finished invite, ready to share."
+      />
 
       <div className="mt-16">
         <section>
@@ -61,10 +78,10 @@ export default function Hootenanny() {
           </h2>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
             Apple Invites is beautiful, but it only works if every guest has an
-            iPhone, and I wanted to send an invite to my daughter&apos;s dance
+            iPhone. I wanted to send an invite to my daughter&apos;s dance
             recital without worrying about who was on which platform. Most
-            alternatives are bloated with ads, upsells, or require guests to
-            create an account just to say &ldquo;yes, I&apos;ll be there.&rdquo;
+            alternatives are bloated with ads and upsells, or make guests create
+            an account just to say &ldquo;yes, I&apos;ll be there.&rdquo;
           </p>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
             I wanted something tiny, warm, and personal. One link, one tap, done.
@@ -75,23 +92,37 @@ export default function Hootenanny() {
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
             How It Works
           </h2>
-          <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            I sign in with a PIN, pick a cover photo, fill out the basics
-            (date, venue, a short description), and get two shareable links: one
-            for guests to RSVP and one that&apos;s details-only. Guests open
-            the link on any device, see the invite, and respond with their name
-            and party size. Everything lands on a dashboard where I can see who
-            is going, who is on the fence, and who can&apos;t make it.
-          </p>
-        </section>
 
-        <div className="mt-12 flex justify-center">
-          <Image
+          <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+            Creating an event takes about a minute. I sign in with a PIN, pick a
+            cover photo, and fill in the basics &mdash; date, venue, a short
+            description &mdash; previewing the invite as I build it.
+          </p>
+          <Screenshot
             src={createImg}
-            alt="Creating and previewing an event in Hootenanny"
-            className="w-full max-w-lg rounded-2xl"
+            alt="Building and previewing an event in Hootenanny"
+            caption="Build the event and preview it as you go."
           />
-        </div>
+
+          <p className="mt-8 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+            When it&apos;s ready, I get two shareable links: an RSVP link for the
+            guests I want to hear back from, and a details-only link for casual
+            announcements. Guests open either one on any device &mdash; no
+            account, no download &mdash; and respond with their name and party
+            size.
+          </p>
+
+          <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+            Every response lands on a host dashboard, where I can see who&apos;s
+            coming, who&apos;s on the fence, and who can&apos;t make it, along
+            with party sizes, notes, and contact info.
+          </p>
+          <Screenshot
+            src={rsvpsImg}
+            alt="The host dashboard showing live RSVPs and the guest list"
+            caption="Track every RSVP from one dashboard."
+          />
+        </section>
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
@@ -143,13 +174,24 @@ export default function Hootenanny() {
           </div>
         </section>
 
-        <div className="mt-12 flex justify-center">
-          <Image
-            src={rsvpsImg}
-            alt="The host dashboard showing live RSVPs and the guest list"
-            className="w-full max-w-lg rounded-2xl"
+        <section className="mt-12">
+          <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+            Design
+          </h2>
+          <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+            The name came first. &ldquo;Hootenanny&rdquo; is an old-fashioned
+            word for an informal gathering, and it begged for an owl mascot. The
+            whole UI is built around a warm brown, cream, and tan palette that
+            feels more like a handwritten note than a SaaS dashboard. The
+            wordmark is set in Lily Script One, the body in Nunito, and little
+            owl puns turn up in empty states and confirmation screens.
+          </p>
+          <Screenshot
+            src={signInImg}
+            alt="The Hootenanny sign-in screen with its owl mascot"
+            caption="The owl says hello at sign-in."
           />
-        </div>
+        </section>
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
@@ -162,27 +204,6 @@ export default function Hootenanny() {
             <TechTag>Netlify</TechTag>
             <TechTag>Netlify Edge Functions</TechTag>
             <TechTag>PWA / Service Worker</TechTag>
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-            Design
-          </h2>
-          <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            The name came first. &ldquo;Hootenanny&rdquo; is an old-fashioned
-            word for an informal gathering, and it begged for an owl mascot. I
-            built the whole UI around a warm brown, cream, and tan palette that
-            feels more like a handwritten note than a SaaS dashboard. The
-            wordmark is set in Lily Script One, the body is Nunito, and little
-            owl puns show up in empty states and confirmation screens.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Image
-              src={signInImg}
-              alt="The Hootenanny sign-in screen with its owl mascot"
-              className="w-full max-w-lg rounded-2xl"
-            />
           </div>
         </section>
       </div>
