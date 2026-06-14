@@ -1,5 +1,11 @@
 import { type Metadata } from 'next'
+import Image from 'next/image'
 import { Container } from '@/components/Container'
+
+import eventPreviewImg from './hootenanny_event_preview.png'
+import createImg from './hootenanny_create.png'
+import rsvpsImg from './hootenanny_rsvps.png'
+import signInImg from './hootenanny_card.png'
 
 export const metadata: Metadata = {
   title: 'Hootenanny - Playful Event Invitations',
@@ -40,6 +46,14 @@ export default function Hootenanny() {
         </p>
       </header>
 
+      <div className="mt-12 flex justify-center">
+        <Image
+          src={eventPreviewImg}
+          alt="A finished Hootenanny invite, ready to share"
+          className="w-full max-w-lg rounded-2xl"
+        />
+      </div>
+
       <div className="mt-16">
         <section>
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
@@ -70,6 +84,14 @@ export default function Hootenanny() {
             is going, who is on the fence, and who can&apos;t make it.
           </p>
         </section>
+
+        <div className="mt-12 flex justify-center">
+          <Image
+            src={createImg}
+            alt="Creating and previewing an event in Hootenanny"
+            className="w-full max-w-lg rounded-2xl"
+          />
+        </div>
 
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
@@ -121,6 +143,14 @@ export default function Hootenanny() {
           </div>
         </section>
 
+        <div className="mt-12 flex justify-center">
+          <Image
+            src={rsvpsImg}
+            alt="The host dashboard showing live RSVPs and the guest list"
+            className="w-full max-w-lg rounded-2xl"
+          />
+        </div>
+
         <section className="mt-12">
           <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
             Tech Stack
@@ -147,6 +177,13 @@ export default function Hootenanny() {
             wordmark is set in Lily Script One, the body is Nunito, and little
             owl puns show up in empty states and confirmation screens.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Image
+              src={signInImg}
+              alt="The Hootenanny sign-in screen with its owl mascot"
+              className="w-full max-w-lg rounded-2xl"
+            />
+          </div>
         </section>
       </div>
     </Container>
