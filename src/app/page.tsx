@@ -413,9 +413,9 @@ export default function Home() {
                 has been built around designing and scaling the operational systems behind great customer experiences.
               </p>
               <p>
-                As a consultant, I help companies design the systems that connect
-                support, education, and product operations: reducing friction,
-                improving clarity, and enabling better decisions at scale.
+                As a consultant, I design the systems that connect scalable
+                customer experiences, education, and back-end operations, and I
+                build the apps, databases, and internal tools that make them real.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
@@ -541,7 +541,7 @@ export default function Home() {
               >
                 Prep Work
               </Link>
-              , I help companies design scalable support operations, customer education programs, and internal tooling.
+              , I help companies design scalable support operations and customer education programs, then build the software behind them: full-stack development, database architecture, and application design.
             </p>
           </div>
         </div>

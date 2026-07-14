@@ -1,5 +1,8 @@
 import { type Metadata } from 'next'
+import Image from 'next/image'
 import { Container } from '@/components/Container'
+
+import heroImage from './return_window.png'
 
 export const metadata: Metadata = {
   title: 'Return Window - Never Miss a Return Deadline',
@@ -25,7 +28,14 @@ export default function ReturnWindow() {
         </p>
       </header>
 
-      {/* TODO: Add dashboard screenshot */}
+      <div className="mt-12">
+        <Image
+          src={heroImage}
+          alt="Return Window app"
+          className="rounded-2xl"
+          priority
+        />
+      </div>
     </Container>
   )
 }
