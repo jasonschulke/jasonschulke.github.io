@@ -47,12 +47,16 @@ const projects: Project[] = [
   {
     name: 'Tender',
     slug: 'tender',
+    description:
+      'A gamified conversation starter for couples.',
     image: tenderTeaser,
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
     name: 'Mise',
     slug: 'mise',
+    description:
+      'Import recipes from any website, avoid paywalls, and manage recipes.',
     image: miseTeaser,
     badge: { label: 'Soon', variant: 'soon' },
   },
