@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 const skills = [
   {
@@ -56,6 +57,7 @@ export default function ClaudeCodeSkills() {
           context, progress, and releases. These skills work together to
           streamline documentation and version control workflows.
         </p>
+        <ProjectDate slug="claude-code-skills" />
       </header>
 
       <div className="mt-12 space-y-12">

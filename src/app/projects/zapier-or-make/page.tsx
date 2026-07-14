@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 import {
   zapierPlans,
   makePlans,
@@ -356,6 +357,7 @@ export default function ZapOrMake() {
           </Link>
           .
         </p>
+        <ProjectDate slug="zapier-or-make" />
       </header>
       <div className="mt-12">
         <Calculator />

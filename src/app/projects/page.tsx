@@ -2,6 +2,8 @@ import { type Metadata } from 'next'
 import Image, { type StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
+import { WritingList, type WritingItem } from '@/components/WritingList'
+import { projectDates } from '@/data/projectDates'
 import articles from '@/data/articles.json'
 
 import bucketsHero from './buckets/buckets.png'
@@ -22,36 +24,35 @@ export const metadata: Metadata = {
 
 type Project = {
   name: string
-  description: string
-  href: string
+  slug: string
+  description?: string
+  href?: string
   image?: StaticImageData
   badge?: { label: string; variant: 'soon' | 'pilot' }
 }
 
+// Ordered latest first (dates live in @/data/projectDates).
 const projects: Project[] = [
   {
-    name: 'Hootenanny',
+    name: "Queen's Quest",
+    slug: 'queens-quest',
     description:
-      'A playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs — no accounts required.',
-    href: '/projects/hootenanny',
-    image: hootenannyHero,
+      'A gamified RPG task planner. Real-life tasks become quests in a cozy top-down fantasy kingdom, with sub-tasks as chapters and rewards for finishing.',
+    badge: { label: 'Soon', variant: 'soon' },
   },
   {
-    name: 'Papaya',
-    description:
-      'A unified house hunting tool that lets you save, rate, and organize homes from any listing site with just one click.',
-    href: '/projects/papaya',
-    image: papayaHero,
+    name: 'Tender',
+    slug: 'tender',
+    badge: { label: 'Soon', variant: 'soon' },
   },
   {
-    name: 'Max',
-    description:
-      'A lightweight macOS menu bar app that gives you full control over your Dock appearance with customizable visual effects, colors, and materials.',
-    href: '/projects/max',
-    image: maxHero,
+    name: 'Mise',
+    slug: 'mise',
+    badge: { label: 'Soon', variant: 'soon' },
   },
   {
     name: 'Return Window',
+    slug: 'return-window',
     description:
       'Never miss a return deadline again. Forward your order confirmations and get reminded before return windows close.',
     href: '/projects/return-window',
@@ -59,7 +60,32 @@ const projects: Project[] = [
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
+    name: 'Hootenanny',
+    slug: 'hootenanny',
+    description:
+      'A playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs — no accounts required.',
+    href: '/projects/hootenanny',
+    image: hootenannyHero,
+  },
+  {
+    name: 'Papaya',
+    slug: 'papaya',
+    description:
+      'A unified house hunting tool that lets you save, rate, and organize homes from any listing site with just one click.',
+    href: '/projects/papaya',
+    image: papayaHero,
+  },
+  {
+    name: 'Max',
+    slug: 'max',
+    description:
+      'A lightweight macOS menu bar app that gives you full control over your Dock appearance with customizable visual effects, colors, and materials.',
+    href: '/projects/max',
+    image: maxHero,
+  },
+  {
     name: 'Cardboard Co',
+    slug: 'cardboard-co',
     description:
       'An exercise in building an idea, brand, and testing product-market fit with a hyperlocal recycling service in Austin, TX.',
     href: '/projects/cardboard-co',
@@ -67,7 +93,16 @@ const projects: Project[] = [
     badge: { label: 'Pilot', variant: 'pilot' },
   },
   {
+    name: 'Moove',
+    slug: 'moove',
+    description:
+      'A minimalist, offline-first workout tracker with AI coaching built-in. Designed for people who want to stay consistent without the bloat.',
+    href: '/projects/moove',
+    image: mooveHero,
+  },
+  {
     name: 'Claude Code Skills',
+    slug: 'claude-code-skills',
     description:
       'A suite of complementary Claude Code skills for managing project context, progress, and releases.',
     href: '/projects/claude-code-skills',
@@ -75,20 +110,15 @@ const projects: Project[] = [
   },
   {
     name: 'Buckets',
+    slug: 'buckets',
     description:
       'A simple prioritization tool with a retro twist. Drop tasks into buckets, drag to reorder, and focus on what matters most.',
     href: '/projects/buckets',
     image: bucketsHero,
   },
   {
-    name: 'Moove',
-    description:
-      'A minimalist, offline-first workout tracker with AI coaching built-in. Designed for people who want to stay consistent without the bloat.',
-    href: '/projects/moove',
-    image: mooveHero,
-  },
-  {
     name: 'Zapier or Make',
+    slug: 'zapier-or-make',
     description:
       'Zapier and Make use fundamentally different billing models. This tool estimates your Make operations from Zapier usage and finds the lowest-cost plan.',
     href: '/projects/zapier-or-make',
@@ -96,33 +126,11 @@ const projects: Project[] = [
   },
 ]
 
-interface WritingItem {
-  title: string
-  link: string
-  description: string
-  pubDate: string
-  creator: string
-  image?: string | null
-}
+function ProjectCardInner({ project }: { project: Project }) {
+  const date = projectDates[project.slug]
 
-function formatArticleDate(dateString: string): string {
-  try {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  } catch {
-    return dateString
-  }
-}
-
-function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link
-      href={project.href}
-      className="group relative flex flex-col overflow-hidden rounded-2xl bg-zinc-100 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
-    >
+    <>
       {project.image ? (
         <div className="aspect-[16/9] overflow-hidden">
           <Image
@@ -155,42 +163,40 @@ function ProjectCard({ project }: { project: Project }) {
             </span>
           )}
         </div>
-        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          {project.description}
-        </p>
+        {date && (
+          <p className="mt-1 text-xs font-medium text-zinc-400 dark:text-zinc-500">
+            {date}
+          </p>
+        )}
+        {project.description && (
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            {project.description}
+          </p>
+        )}
       </div>
-    </Link>
+    </>
   )
 }
 
-function WritingRow({ article }: { article: WritingItem }) {
-  const isExternal = /^https?:\/\//.test(article.link)
+function ProjectCard({ project }: { project: Project }) {
+  const baseClass =
+    'group relative flex flex-col overflow-hidden rounded-2xl bg-zinc-100 transition dark:bg-zinc-800'
+
+  if (project.href) {
+    return (
+      <Link
+        href={project.href}
+        className={`${baseClass} hover:bg-zinc-200 dark:hover:bg-zinc-700`}
+      >
+        <ProjectCardInner project={project} />
+      </Link>
+    )
+  }
 
   return (
-    <li>
-      <Link
-        href={article.link}
-        {...(isExternal
-          ? { target: '_blank', rel: 'noopener noreferrer' }
-          : {})}
-        className="group flex flex-col gap-1 border-b border-zinc-100 py-5 transition sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 dark:border-zinc-800"
-      >
-        <div className="sm:flex-1">
-          <h3 className="text-base font-semibold text-zinc-800 transition group-hover:text-indigo-500 dark:text-zinc-100 dark:group-hover:text-indigo-400">
-            {article.title}
-          </h3>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            {article.description}
-          </p>
-        </div>
-        <time
-          dateTime={article.pubDate}
-          className="mt-1 shrink-0 text-sm text-zinc-400 sm:mt-0 sm:w-36 sm:text-right dark:text-zinc-500"
-        >
-          {formatArticleDate(article.pubDate)}
-        </time>
-      </Link>
-    </li>
+    <div className={baseClass}>
+      <ProjectCardInner project={project} />
+    </div>
   )
 }
 
@@ -202,9 +208,8 @@ export default function Work() {
           Work
         </h1>
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          A mix of things I&apos;ve built and things I&apos;ve written. Side
-          projects, pilots, and tools, alongside essays on product education,
-          operations, and building systems that scale.
+          A mix of things I&apos;ve built and I&apos;ve written, including apps,
+          automations, tools, and articles on building systems that scale.
         </p>
       </header>
 
@@ -214,7 +219,7 @@ export default function Work() {
         </h2>
         <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <ProjectCard key={project.href} project={project} />
+            <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>
@@ -227,28 +232,7 @@ export default function Work() {
           Essays on product education, support operations, and building systems
           that scale, published on my Substack newsletter, Product Education.
         </p>
-        <ul className="mt-6">
-          {(articles as WritingItem[]).map((article) => (
-            <WritingRow key={article.link} article={article} />
-          ))}
-        </ul>
-        <div className="mt-10">
-          <Link
-            href="https://producteducation.substack.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-900 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
-          >
-            Browse the full archive on Substack
-            <svg
-              viewBox="0 0 24 24"
-              className="h-4 w-4 fill-current"
-              aria-hidden="true"
-            >
-              <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.56-5.573 9.52 5.573V10.812H1.46zm0-7.971h21.08V0H1.46v2.841z" />
-            </svg>
-          </Link>
-        </div>
+        <WritingList articles={articles as WritingItem[]} />
       </section>
     </Container>
   )

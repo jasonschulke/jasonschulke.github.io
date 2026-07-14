@@ -1,4 +1,5 @@
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 export default function Buckets() {
   return (
@@ -13,6 +14,7 @@ export default function Buckets() {
           sort her work projects by urgency and importance. Drop tasks into
           buckets, drag to reorder, and focus on what matters most.
         </p>
+        <ProjectDate slug="buckets" />
       </header>
       <div className="mt-12">
         <iframe

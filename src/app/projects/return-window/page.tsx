@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 import heroImage from './return_window.png'
 
@@ -26,6 +27,7 @@ export default function ReturnWindow() {
           Never miss a return deadline again. Forward your order confirmations
           and get reminded before return windows close.
         </p>
+        <ProjectDate slug="return-window" />
       </header>
 
       <div className="mt-12">

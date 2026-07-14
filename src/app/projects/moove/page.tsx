@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 import heroImage from './moove_hero.png'
 import highlightsImage from './moove_highlights.png'
@@ -50,6 +51,7 @@ export default function Moove() {
           A minimalist, offline-first workout tracker with AI coaching built-in.
           Designed for people who want to stay consistent without the bloat.
         </p>
+        <ProjectDate slug="moove" />
       </header>
 
       <div className="mt-12">

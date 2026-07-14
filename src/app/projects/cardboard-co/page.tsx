@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 import billboardImage from './urban-billboard-mockup.png'
 import devicesImage from './minimalistic-tablet-and-phone-mockup.png'
@@ -56,6 +57,7 @@ export default function CardboardCo() {
           is a hyperlocal recycling pickup service in Austin,
           TX, currently running as a pilot in three neighborhoods.
         </p>
+        <ProjectDate slug="cardboard-co" />
       </header>
 
       <div className="mt-12">

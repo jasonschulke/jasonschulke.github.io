@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 import heroImage from './max_hero.png'
 import settingsImage from './max_settings.png'
@@ -53,6 +54,7 @@ export default function Max() {
             View on GitHub →
           </Link>
         </p>
+        <ProjectDate slug="max" />
       </header>
 
       <div className="mt-12">

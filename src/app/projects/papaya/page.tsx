@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 import appImage1 from './papaya_1.png'
 import appImage2 from './papaya_2.jpg'
@@ -34,6 +35,7 @@ export default function Papaya() {
           listings from any site with one click and keeps everything organized
           in one place.
         </p>
+        <ProjectDate slug="papaya" />
       </header>
       
  <div className="mt-12">

@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { ProjectDate } from '@/components/ProjectDate'
 
 import eventPreviewImg from './hootenanny_event_preview.png'
 import createImg from './hootenanny_create.png'
@@ -63,6 +64,7 @@ export default function Hootenanny() {
           a beautiful invite in under a minute, share a link, and watch the
           RSVPs roll in &mdash; no accounts, no app store, no fuss.
         </p>
+        <ProjectDate slug="hootenanny" />
       </header>
 
       <Screenshot
