@@ -15,6 +15,9 @@ import claudeSkillsHero from './claude-code-skills/hero.png'
 import maxHero from './max/max_hero.png'
 import papayaHero from './papaya/papaya_hero.jpg'
 import hootenannyHero from './hootenanny/hootenanny_hero.png'
+import miseTeaser from './mise_teaser.png'
+import tenderTeaser from './tender_teaser.png'
+import qqTeaser from './qq_teaser.png'
 
 export const metadata: Metadata = {
   title: 'Work',
@@ -38,16 +41,19 @@ const projects: Project[] = [
     slug: 'queens-quest',
     description:
       'A gamified RPG task planner. Real-life tasks become quests in a cozy top-down fantasy kingdom, with sub-tasks as chapters and rewards for finishing.',
+    image: qqTeaser,
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
     name: 'Tender',
     slug: 'tender',
+    image: tenderTeaser,
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
     name: 'Mise',
     slug: 'mise',
+    image: miseTeaser,
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
