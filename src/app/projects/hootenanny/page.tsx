@@ -11,7 +11,7 @@ import signInImg from './hootenanny_card.png'
 export const metadata: Metadata = {
   title: 'Hootenanny - Playful Event Invitations',
   description:
-    'A simple, playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs, with no accounts required for guests.',
+    'An event invitation web app inspired by Apple Invites. Make an invite, share the link, and track RSVPs without asking guests to create an account.',
 }
 
 function FeatureRow({ feature, description }: { feature: string; description: string }) {
@@ -60,9 +60,9 @@ export default function Hootenanny() {
           Hootenanny
         </h1>
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          A playful event invitation web app inspired by Apple Invites. Spin up
-          a beautiful invite in under a minute, share a link, and watch the
-          RSVPs roll in &mdash; no accounts, no app store, no fuss.
+          A small web app for sending event invitations, loosely inspired by
+          Apple Invites. You make the invite, send the link, and see who&apos;s
+          coming. Guests reply from whatever phone they happen to have.
         </p>
         <ProjectDate slug="hootenanny" />
       </header>
@@ -79,14 +79,16 @@ export default function Hootenanny() {
             Why I Built This
           </h2>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            Apple Invites is beautiful, but it only works if every guest has an
-            iPhone. I wanted to send an invite to my daughter&apos;s dance
-            recital without worrying about who was on which platform. Most
-            alternatives are bloated with ads and upsells, or make guests create
-            an account just to say &ldquo;yes, I&apos;ll be there.&rdquo;
+            Apple Invites looks great, but everyone you invite needs an iPhone. I
+            was putting together something for my daughter&apos;s dance recital
+            and half the family is on Android, so that ruled it out immediately.
+            The other options I tried were buried in ads, or wanted guests to
+            make an account before they could say &ldquo;yes, I&apos;ll be
+            there.&rdquo;
           </p>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            I wanted something tiny, warm, and personal. One link, one tap, done.
+            So I built the smaller, friendlier version I wanted. Open the link,
+            tap a button, done.
           </p>
         </section>
 
@@ -96,33 +98,34 @@ export default function Hootenanny() {
           </h2>
 
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            Creating an event takes about a minute. I sign in with a PIN, pick a
-            cover photo, and fill in the basics &mdash; date, venue, a short
-            description &mdash; previewing the invite as I build it.
+            Setting up an event takes about a minute. I sign in with a PIN, pick
+            a cover photo, and fill in the date, venue, and a short description.
+            The invite previews as I type, so I can see exactly what guests will
+            see.
           </p>
           <Screenshot
             src={createImg}
             alt="Building and previewing an event in Hootenanny"
-            caption="Build the event and preview it as you go."
+            caption="The editor, with a live preview of the invite."
           />
 
           <p className="mt-8 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            When it&apos;s ready, I get two shareable links: an RSVP link for the
-            guests I want to hear back from, and a details-only link for casual
-            announcements. Guests open either one on any device &mdash; no
-            account, no download &mdash; and respond with their name and party
-            size.
+            Once it&apos;s ready I get two links. One collects RSVPs, for the
+            people I actually need a headcount from. The other just shows the
+            details, which is handy for the group chat where nobody needs to
+            formally reply. Either link opens on any device, and guests respond
+            with their name and how many people they&apos;re bringing.
           </p>
 
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            Every response lands on a host dashboard, where I can see who&apos;s
-            coming, who&apos;s on the fence, and who can&apos;t make it, along
-            with party sizes, notes, and contact info.
+            Responses land on a host dashboard. I can see who&apos;s in,
+            who&apos;s still deciding, and who can&apos;t make it, plus party
+            sizes and whatever notes people leave behind.
           </p>
           <Screenshot
             src={rsvpsImg}
             alt="The host dashboard showing live RSVPs and the guest list"
-            caption="Track every RSVP from one dashboard."
+            caption="The host view, once responses start coming in."
           />
         </section>
 
@@ -145,31 +148,31 @@ export default function Hootenanny() {
               <tbody>
                 <FeatureRow
                   feature="No-account RSVPs"
-                  description="Guests just tap the link and respond. No signups, no downloads, no friction."
+                  description="Guests tap the link and reply. There's nothing to sign up for or install."
                 />
                 <FeatureRow
                   feature="Two link types"
-                  description="Share an RSVP link for guests you want to hear back from, or a details-only link for casual announcements."
+                  description="One link collects RSVPs. The other just shows the details, for when you don't need a headcount."
                 />
                 <FeatureRow
                   feature="Cover photo editor"
-                  description="Upload any image and reposition or zoom it directly in the browser. Text always stays legible over the photo."
+                  description="Upload any photo and drag or zoom it into place right in the browser. The overlay keeps the text readable no matter what's underneath."
                 />
                 <FeatureRow
                   feature="Live guest list"
-                  description="See who&apos;s going, with party sizes, notes, and contact info. Edit or remove RSVPs as needed."
+                  description="Who's coming, how many they're bringing, and any notes they left. Edit or remove entries when plans change."
                 />
                 <FeatureRow
                   feature="Map embed"
-                  description="Venue addresses automatically embed a Google Map with a tap-to-open link."
+                  description="Add a venue address and it pulls in a Google Map that opens with one tap."
                 />
                 <FeatureRow
                   feature="Installable PWA"
-                  description="Add it to your home screen for a native-app feel, complete with offline support."
+                  description="Add it to your home screen and it behaves like a regular app, offline included."
                 />
                 <FeatureRow
                   feature="Rich link previews"
-                  description="Pasting the link in iMessage, Slack, or social media shows the cover photo and event title via Netlify edge functions."
+                  description="Paste the link into iMessage or Slack and it unfurls with the cover photo and event title, handled by Netlify edge functions."
                 />
               </tbody>
             </table>
@@ -181,12 +184,13 @@ export default function Hootenanny() {
             Design
           </h2>
           <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
-            The name came first. &ldquo;Hootenanny&rdquo; is an old-fashioned
-            word for an informal gathering, and it begged for an owl mascot. The
-            whole UI is built around a warm brown, cream, and tan palette that
-            feels more like a handwritten note than a SaaS dashboard. The
-            wordmark is set in Lily Script One, the body in Nunito, and little
-            owl puns turn up in empty states and confirmation screens.
+            The name came first. A hootenanny is an old word for an informal
+            get-together, and once I had it, the owl was pretty much
+            unavoidable. Everything else followed from there. The palette is all
+            browns, creams, and tans, which felt right for something closer to a
+            handwritten note than a dashboard. The wordmark is set in Lily
+            Script One and the body text is Nunito. There are owl puns hiding in
+            the empty states if you go looking.
           </p>
           <Screenshot
             src={signInImg}

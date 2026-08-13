@@ -73,7 +73,7 @@ const projects: Project[] = [
     name: 'Hootenanny',
     slug: 'hootenanny',
     description:
-      'A playful event invitation web app inspired by Apple Invites. Create beautiful invites, share a link, and track RSVPs — no accounts required.',
+      'A small web app for sending event invitations. Make the invite, send the link, and see who is coming. Guests never have to make an account.',
     href: '/projects/hootenanny',
     image: hootenannyHero,
   },
