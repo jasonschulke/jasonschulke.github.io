@@ -3,7 +3,7 @@
 export const projectDates: Record<string, string> = {
   'queens-quest': 'September 2026',
   tender: 'August 2026',
-  mise: 'July 2026',
+  parsnip: 'July 2026',
   'return-window': 'June 2026',
   hootenanny: 'May 2026',
   papaya: 'April 2026',

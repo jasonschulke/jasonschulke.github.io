@@ -15,9 +15,9 @@ import claudeSkillsHero from './claude-code-skills/hero.png'
 import maxHero from './max/max_hero.png'
 import papayaHero from './papaya/papaya_hero.jpg'
 import hootenannyHero from './hootenanny/hootenanny_hero.png'
-import miseTeaser from './mise_teaser.png'
-import tenderTeaser from './tender_teaser.png'
-import qqTeaser from './qq_teaser.png'
+import parsnipTeaser from './parsnip/parsnip_mock.png'
+import tenderTeaser from './tender/tender_teaser.png'
+import qqTeaser from './qq/qq_teaser.png'
 
 export const metadata: Metadata = {
   title: 'Work',
@@ -53,11 +53,11 @@ const projects: Project[] = [
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
-    name: 'Mise',
-    slug: 'mise',
+    name: 'Parsnip',
+    slug: 'parsnip',
     description:
       'Import recipes from any website, avoid paywalls, and manage recipes.',
-    image: miseTeaser,
+    image: parsnipTeaser,
     badge: { label: 'Soon', variant: 'soon' },
   },
   {
